@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 4 · Prompt Engineering | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 4 — Prompt Engineering, the professor's full reference notes for exam prep." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 4</div>
+      <span class="daytag">Love Note 4</span>
+      <h1>Prompt Engineering</h1>
+      <p class="lead">The professor's full reference notes — everything I'd want you to know before the exam.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>Prompt engineering is the craft of shaping the <i>input</i> to a language model so the
+         <i>output</i> is accurate, relevant, and usable. You are not editing the model — you cannot
+         change its weights. You are steering it. The prompt is the steering wheel, and words are the
+         only control you have.</p>
+      <p>Here is the mindset shift most people never make: <b>when you write a prompt, you are
+         programming — in plain English.</b> There is no compiler and no syntax error message, so a bad
+         prompt fails silently by handing you a mediocre answer instead of an error. Learning to prompt
+         well is learning to debug that silence.</p>
+    </div>
+
+    <!-- 2. A DIFFERENT LAYMAN ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: the brilliant new intern</h2>
+      <p>Forget maps for a moment. Picture a <b>brand-new intern on their first morning</b>. This intern
+         has read almost the entire internet — astonishingly well-read, fast, and eager. But they have
+         <b>never met you</b>, know nothing about your company or project, and will <b>never remember
+         this conversation tomorrow</b>.</p>
+      <p>If you walk past and mumble <i>"handle the report"</i>, they produce <i>something</i> —
+         confident, polished, possibly completely wrong — because they would rather guess than admit
+         they lack context. But say <i>"here's last month's sales file, the audience is the finance
+         team, I need a one-page summary with three risks, by lunch"</i>, and that same intern becomes
+         brilliant.</p>
+      <p><b>The lesson:</b> the AI's intelligence is fixed and enormous. The only variable you control
+         is how well you brief the intern. Prompt engineering is <i>onboarding your intern, every time
+         you speak.</i></p>
+    </div>
+
+    <!-- 3. UNDER THE HOOD -->
+    <div class="panel">
+      <h2><span class="ic">⚙️</span> What actually happens when you hit enter</h2>
+      <p>To prompt like a professional, picture the machinery (this ties back to Note 2 — Tokens, and
+         Note 3 — the Context Window):</p>
+      <ol>
+        <li>Your prompt is broken into <b>tokens</b> — small chunks of text, not whole words.</li>
+        <li>The model reads <b>all tokens at once</b> and weighs how each relates to the others (this
+            is "attention").</li>
+        <li>It <b>predicts the next token</b> — not the "true" answer, but the most statistically likely
+            continuation given your words.</li>
+        <li>It <b>repeats</b>, one token at a time, until the answer is complete.</li>
+      </ol>
+      <p>This single fact explains almost every prompting rule you will ever learn: <b>the model is a
+         prediction engine, not a knowledge database.</b> It is always answering "given this text, what
+         usually comes next?" Your job is to make the <i>right</i> answer also the <i>most likely</i> one.</p>
+    </div>
+
+    <!-- 4. FRAMEWORKS -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> Beyond the recipe: prompting frameworks</h2>
+      <p>The image gives you the starter recipe (Role + Task + Context + Format + Limits). Here are the
+         named frameworks professionals actually reach for:</p>
+      <table>
+        <thead><tr><th>Framework</th><th>Stands for</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td>RTF</td><td>Role · Task · Format</td><td>Quick everyday asks</td></tr>
+          <tr><td>RISEN</td><td>Role · Instruction · Steps · End-goal · Narrowing</td><td>Complex, multi-step tasks</td></tr>
+          <tr><td>CRISPE</td><td>Capacity · Request · Insight · Specifics · Personality · Experiment</td><td>Creative &amp; exploratory work</td></tr>
+          <tr><td>CO-STAR</td><td>Context · Objective · Style · Tone · Audience · Response-format</td><td>Polished, audience-facing writing</td></tr>
+        </tbody>
+      </table>
+      <p>Don't memorise all of them. Memorise <i>one</i> (RTF for speed, CO-STAR for depth) and understand
+         they are the same idea: <b>remove the model's need to guess.</b></p>
+    </div>
+
+    <!-- 5. ADVANCED TIPS -->
+    <div class="panel callout">
+      <h2><span class="ic">🔧</span> Advanced tips &amp; tricks (the ones that move the needle)</h2>
+      <ul>
+        <li><b>Use delimiters.</b> Wrap input in triple quotes, XML tags, or <code>###</code> markers so
+            the model never confuses <i>your instructions</i> with <i>the text to work on</i>.</li>
+        <li><b>Few-shot beats explaining.</b> Showing 1–3 input→output examples teaches the pattern faster
+            than a paragraph of description ever will.</li>
+        <li><b>Ask for reasoning: "think step by step."</b> For logic or multi-part tasks this measurably
+            improves accuracy (chain-of-thought — our Note 9).</li>
+        <li><b>Prime the output.</b> End your prompt with the start of the answer — e.g.
+            <code>Return JSON only: {</code> — and the model falls into line.</li>
+        <li><b>Prefer positive instructions.</b> "Write short sentences" works better than "don't write
+            long sentences." Models steer toward what you describe, not away from it.</li>
+        <li><b>Split big jobs (prompt chaining).</b> One prompt to extract, another to analyse, a third to
+            format. Small clear steps beat one giant messy prompt.</li>
+        <li><b>Make it self-critique.</b> "Review your answer, list any errors, then give the corrected
+            version." The model genuinely catches its own mistakes.</li>
+        <li><b>Pair prompt with temperature.</b> Low for facts and code, higher for brainstorming (that
+            dial is next — Note 5).</li>
+      </ul>
+    </div>
+
+    <!-- 6. DIFFERENT REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: from noise to a usable incident summary</h2>
+      <p>A different scene — one from an on-call engineer's night. Same AI, two very different prompts:</p>
+      <table>
+        <thead><tr><th>❌ Weak prompt</th><th>✅ Engineered prompt</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>"Summarise this log."</td>
+            <td>"Act as a senior SRE. Below are 200 log lines between triple quotes. Produce: (1) a 2-line
+                plain-English summary, (2) the likely root cause, (3) the 3 most relevant error timestamps.
+                If evidence is insufficient, say so — do not guess."</td>
+          </tr>
+          <tr>
+            <td>Output: a vague paragraph restating the logs.</td>
+            <td>Output: a structured, decision-ready incident note you can paste straight into the ticket.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Notice the four upgrades: a <b>role</b>, a clear <b>output structure</b>, explicit
+         <b>delimiters</b>, and a <b>guardrail against hallucination</b> ("if insufficient, say so").
+         That last clause is what separates a hobbyist prompt from a production one.</p>
+    </div>
+
+    <!-- 7. THINGS NO BOOK TELLS YOU -->
+    <div class="panel callout">
+      <h2><span class="ic">🔒</span> Things no textbook tells you (off-the-record notes)</h2>
+      <ul>
+        <li><b>The model has no memory between calls.</b> Every request starts blank; the "memory" you
+            feel is just previous text being resent. Context is not remembered — it is re-fed.</li>
+        <li><b>Ambiguity defaults to average.</b> When you are vague, the model fills the gap with the
+            statistically most common answer — which is why vague prompts feel bland. Specificity buys
+            originality.</li>
+        <li><b>The opening words carry the most weight.</b> Lead with the role and the goal, not with
+            pleasantries.</li>
+        <li><b>The model mirrors you.</b> Sloppy prompts get sloppy answers; precise prompts get precise
+            ones. Quality is contagious in both directions.</li>
+        <li><b>"Please" doesn't help — structure does.</b> It is clarity and specificity, not manners,
+            that change the output.</li>
+        <li><b>It will confidently hallucinate to avoid a gap.</b> Always give it explicit permission to
+            say "I don't know."</li>
+        <li><b>Order matters (primacy &amp; recency).</b> Instructions at the very start and very end of a
+            long prompt get more weight. Put your most important rule last.</li>
+        <li><b>It cannot reliably count or do exact math</b> in its head — it predicts digits like it
+            predicts words. For precision, ask it to reason step by step or use a tool.</li>
+      </ul>
+    </div>
+
+    <!-- 8. PITFALLS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common pitfalls &amp; anti-patterns</h2>
+      <ul>
+        <li><b>The kitchen-sink prompt</b> — cramming ten unrelated asks into one. Split them.</li>
+        <li><b>Buried instructions</b> — the real task hidden in paragraph four. Lead with it.</li>
+        <li><b>Undefined success</b> — never saying what "good" looks like, then being disappointed.</li>
+        <li><b>No format specified</b> — then complaining the answer isn't a table.</li>
+        <li><b>Assuming shared context</b> — referring to "the project" the model has never seen.</li>
+      </ul>
+    </div>
+
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>Why do vague prompts produce generic answers?</b><br/>
+            Because the model fills ambiguity with the statistically most common continuation.</li>
+        <li><b>What are the five levers of a strong prompt?</b><br/>
+            Role, Task, Context, Format, Limits.</li>
+        <li><b>Why give the model permission to say "I don't know"?</b><br/>
+            To suppress confident hallucination when evidence is insufficient.</li>
+        <li><b>What is few-shot prompting?</b><br/>
+            Showing the model a few input→output examples so it infers the pattern.</li>
+        <li><b>Why use delimiters?</b><br/>
+            To cleanly separate your instructions from the content to be processed.</li>
+        <li><b>Does the model remember your last chat?</b><br/>
+            No — prior context is re-sent as text, not remembered.</li>
+      </ol>
+    </div>
+
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Prompt</b> — the full input you give the model.</li>
+        <li><b>Zero-shot</b> — asking with no examples.</li>
+        <li><b>Few-shot</b> — asking with a few examples included.</li>
+        <li><b>Chain-of-thought</b> — prompting the model to reason step by step.</li>
+        <li><b>Delimiter</b> — a marker (<code>```</code>, <code>###</code>, &lt;tags&gt;) separating sections.</li>
+        <li><b>System prompt</b> — the hidden instruction that sets the model's overall behaviour (our Note 7).</li>
+      </ul>
+    </div>
+
+    <!-- 11. RAPID REVISION FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>Shaping the input so the output is accurate, relevant, usable — programming in plain English.</td></tr>
+          <tr><td>The recipe (memorise)</td><td><b>R-T-C-F-L</b> → Role · Task · Context · Format · Limits.</td></tr>
+          <tr><td>One-line mental model</td><td>The AI is a brilliant intern with no memory — brief it fully, every time.</td></tr>
+          <tr><td>Why vague fails</td><td>Ambiguity defaults to the statistically <i>average</i> answer.</td></tr>
+          <tr><td>Power moves</td><td>Delimiters · few-shot examples · "think step by step" · prime the output · self-critique.</td></tr>
+          <tr><td>Anti-hallucination clause</td><td>"If evidence is insufficient, say so — do not guess."</td></tr>
+          <tr><td>Positive &gt; negative</td><td>"Write short sentences" beats "don't write long ones."</td></tr>
+          <tr><td>Order trick</td><td>Most important rule goes <i>last</i> (recency wins in long prompts).</td></tr>
+          <tr><td>Reusable template</td><td>"Act as [role]. [Task]. Context: [background]. Output as [format]. Avoid [limits]."</td></tr>
+          <tr><td>Trap to avoid</td><td>The kitchen-sink prompt — split big jobs into a chain of small ones.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 4.</p>
+      <img class="cheat-img" src="../assets/day4.png" alt="Note 4 cheat sheet — Prompt Engineering" />
+    </div>
+
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Tomorrow's spark</h2>
+      <p>You now know how to tell AI <i>what</i> to do. Note 5 — <b>Temperature</b> — is the dial that
+         decides <i>how boldly</i> it answers: from safe and predictable to wild and inventive.</p>
+      <div class="tags"><span>#PromptEngineering</span><span>#LLM</span><span>#Note4</span><span>#LearnInLove</span></div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="day3.html"><small>Previous · Note 3</small>← Context Window</a>
+      <a class="next" href="day5.html"><small>Next · Note 5</small>Temperature →</a>
+    </div>
+
+  </main>
+
+  <footer><div class="wrap">Love Note 4 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
