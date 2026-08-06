@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Day 2 · Tokens | AI Learning Journey</title>
-  <meta name="description" content="Day 2 — What are tokens, explained with a simple real-world example." />
+  <title>Note 2 · Tokens | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 2 — Tokens, the professor's full reference notes for exam prep." />
   <link rel="stylesheet" href="../assets/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+  </style>
 </head>
 <body>
-
   <nav class="nav">
     <div class="wrap">
-      <div class="brand"><div class="logo">🧠</div><span class="full">AI Learning Journey</span></div>
-      <a class="btn" href="../index.html">← All days</a>
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
     </div>
   </nav>
 
@@ -22,44 +28,205 @@
       <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 2</div>
       <span class="daytag">Love Note 2</span>
       <h1>Tokens</h1>
-      <p class="lead">AI doesn't read whole words the way we do. It breaks text into small puzzle pieces called <b>tokens</b> — and everything it charges, remembers and processes is counted in tokens.</p>
+      <p class="lead">The professor's full reference notes — everything I'd want you to know before the exam.</p>
     </div>
   </header>
 
   <main class="wrap">
 
-    <div class="panel analogy">
-      <h2><span class="ic">🧩</span> The real-world example</h2>
-      <p>Think of building a word out of <b>LEGO bricks</b>. The word <i>“unbelievable”</i> isn't one brick — it's snapped together from smaller pieces:</p>
-      <p style="font-size:18px"><code>un · believ · able</code></p>
-      <p>An LLM does the same. It chops text into tokens (whole words, parts of words, punctuation) and works with those bricks. Roughly, <b>1 token ≈ 4 characters ≈ ¾ of a word</b> in English.</p>
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>A <b>token</b> is the small chunk of text a language model actually reads and writes. It is not
+         a whole word and not a single letter — it sits somewhere in between. Roughly, a token is a
+         common piece of a word: <code>learn</code>, <code>ing</code>, <code>!</code>, a space, or a
+         short whole word like <code>love</code>.</p>
+      <p>Here is the mindset shift: <b>the model never sees your text as words. It sees a stream of
+         numbered tokens.</b> Every limit, every price, every "why did it forget?" — almost all of it
+         traces back to this one idea. Understand tokens, and half of how AI behaves suddenly makes
+         sense.</p>
     </div>
 
+    <!-- 2. A DIFFERENT LAYMAN ANALOGY (image uses LEGO; here we use a NEW one) -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: syllables on a taxi meter</h2>
+      <p>Think of how you naturally clap out a word into <b>syllables</b> — "un-be-liev-a-ble." You
+         don't say the whole word in one burst; your mouth breaks it into beats. Tokens are the model's
+         syllables: the natural beats it uses to read and speak.</p>
+      <p>Now add a twist: imagine every one of those beats ticks a <b>taxi meter</b>. The longer the ride
+         (the more tokens), the higher the fare and the longer the trip. That is exactly how AI works —
+         <b>you pay per token and you wait per token.</b> Short, clear text is a cheap, fast ride;
+         rambling text is a long, expensive one.</p>
+      <p><b>The lesson:</b> tokens are both the <i>rhythm</i> the model reads in and the <i>currency</i>
+         you spend. Every word you send is a beat on the meter.</p>
+    </div>
+
+    <!-- 3. UNDER THE HOOD -->
     <div class="panel">
-      <h2><span class="ic">🔑</span> Why you should care</h2>
+      <h2><span class="ic">⚙️</span> How text becomes tokens (and back)</h2>
+      <p>The step that turns your text into tokens is called <b>tokenization</b>. It happens before the
+         model does any "thinking":</p>
+      <ol>
+        <li>Your text is scanned and split into known pieces using a fixed vocabulary the model learned
+            once, during training.</li>
+        <li>Each piece is swapped for a <b>number (an ID)</b> — the model only ever does math on
+            numbers, never on letters.</li>
+        <li>The model processes those numbers and predicts the next token's number.</li>
+        <li>That number is turned back into text — this reverse step is <b>detokenization</b> — and you
+            see a word appear.</li>
+      </ol>
+      <p>Common words are usually a single token; rare or long words get split into several. This is why
+         <code>cat</code> is one token but <code>tokenization</code> might be three.</p>
+    </div>
+
+    <!-- 4. THE RULES OF THUMB -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> The numbers worth memorising</h2>
+      <table>
+        <thead><tr><th>Rule of thumb</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>1 token ≈ 4 characters</td><td>In typical English text.</td></tr>
+          <tr><td>1 token ≈ ¾ of a word</td><td>So 100 tokens ≈ 75 words.</td></tr>
+          <tr><td>1 page ≈ 500 tokens</td><td>A rough feel for documents.</td></tr>
+          <tr><td>Spaces &amp; punctuation count</td><td>A leading space is usually part of the token.</td></tr>
+        </tbody>
+      </table>
+      <p>These are estimates, not laws — different models tokenize slightly differently — but they are
+         accurate enough to plan prompts, budgets, and document sizes.</p>
+    </div>
+
+    <!-- 5. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why tokens quietly control everything</h2>
       <ul>
-        <li><b>Cost:</b> AI APIs charge <b>per token</b> — both what you send and what it replies.</li>
-        <li><b>Limits:</b> Every model can only handle so many tokens at once (that's tomorrow's topic — the context window).</li>
-        <li><b>Speed:</b> More tokens = more to process = slower and pricier.</li>
+        <li><b>Cost.</b> APIs bill <i>per token</i> — both what you send (input) and what you get back
+            (output). Wordier prompts are literally more expensive.</li>
+        <li><b>Speed.</b> The model generates one token at a time, so longer answers take proportionally
+            longer to appear.</li>
+        <li><b>Context limits.</b> A model's "memory" (the context window — Note 3) is measured in
+            tokens, not words. Run out of tokens and the oldest text drops off.</li>
+        <li><b>Truncation.</b> If your input plus the requested output exceeds the limit, something gets
+            cut — usually silently.</li>
+        <li><b>Multilingual cost.</b> The same sentence in some non-English languages can take 2–3× more
+            tokens, making it slower and pricier.</li>
       </ul>
     </div>
 
-    <div class="panel callout">
-      <h2><span class="ic">💡</span> Quick rule of thumb</h2>
-      <p>A short paragraph is ~100 tokens. This whole page is a few hundred. When someone says <i>“a 128K context model”</i>, they mean it can hold about 128,000 tokens (≈ 96,000 words) in mind at once.</p>
-      <div class="tags"><span>#Tokens</span><span>#LLM</span><span>#Day2</span><span>#AIBasics</span></div>
+    <!-- 6. WORKED EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Worked example: counting a real message</h2>
+      <p>Take the sentence: <code>I love learning AI!</code></p>
+      <table>
+        <thead><tr><th>Token</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td>short whole word → 1 token</td></tr>
+          <tr><td>(space)love</td><td>the leading space rides with the word</td></tr>
+          <tr><td>(space)learning</td><td>common word → often 1 token</td></tr>
+          <tr><td>(space)AI</td><td>1 token</td></tr>
+          <tr><td>!</td><td>punctuation → its own token</td></tr>
+        </tbody>
+      </table>
+      <p>That's roughly <b>5 tokens</b> for 4 words — a good reminder that the token count is usually a
+         bit <i>higher</i> than the word count, not lower.</p>
     </div>
 
+    <!-- 7. THINGS NO BOOK TELLS YOU -->
+    <div class="panel callout">
+      <h2><span class="ic">🔒</span> Things no textbook tells you (off-the-record notes)</h2>
+      <ul>
+        <li><b>The model can't truly "spell."</b> Because it sees tokens, not letters, it struggles with
+            tasks like "count the r's in strawberry" — the letters are hidden inside chunks.</li>
+        <li><b>Numbers get chopped weirdly.</b> A number like <code>12345</code> may split into odd
+            pieces, which is one reason models fumble exact arithmetic.</li>
+        <li><b>A trailing space changes everything.</b> <code>"love"</code> and <code>" love"</code> can
+            be different tokens, subtly affecting the output.</li>
+        <li><b>Emojis and rare symbols are token-hungry.</b> A single emoji can cost several tokens.</li>
+        <li><b>"Max tokens" is output-only.</b> That setting caps the <i>reply</i> length; it does not
+            include your input — a very common billing surprise.</li>
+        <li><b>Repetition is cheap to read, not to write.</b> Long inputs are processed fast in parallel;
+            long outputs are slow because each token waits for the one before it.</li>
+      </ul>
+    </div>
+
+    <!-- 8. PITFALLS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common pitfalls &amp; misconceptions</h2>
+      <ul>
+        <li><b>"One word = one token."</b> False — long words split into several.</li>
+        <li><b>"Tokens are letters."</b> False — they're sub-word chunks, bigger than letters.</li>
+        <li><b>"Only my input costs tokens."</b> False — the model's reply is billed too.</li>
+        <li><b>"Word count ≈ token count."</b> Close, but tokens usually run ~30% higher.</li>
+        <li><b>"Whitespace is free."</b> False — spaces and newlines are part of tokens.</li>
+      </ul>
+    </div>
+
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>What is a token?</b><br/>A sub-word chunk of text — the unit a model reads and writes.</li>
+        <li><b>Roughly how many words are 100 tokens?</b><br/>About 75 words.</li>
+        <li><b>Why can't models reliably count letters in a word?</b><br/>They see tokens (chunks), not
+            individual letters.</li>
+        <li><b>Does the model's reply cost tokens too?</b><br/>Yes — both input and output are counted.</li>
+        <li><b>What is tokenization?</b><br/>The step that splits text into tokens and maps each to a
+            number before processing.</li>
+        <li><b>Why does the same sentence cost more in some languages?</b><br/>It breaks into more tokens
+            than the English equivalent.</li>
+      </ol>
+    </div>
+
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Token</b> — a sub-word chunk of text.</li>
+        <li><b>Tokenization</b> — splitting text into tokens and mapping them to numbers.</li>
+        <li><b>Vocabulary</b> — the fixed set of tokens a model knows.</li>
+        <li><b>Token ID</b> — the number that stands for each token.</li>
+        <li><b>Input / output tokens</b> — what you send vs. what the model generates (both billed).</li>
+        <li><b>Context window</b> — the total token budget the model can hold at once (our Note 3).</li>
+      </ul>
+    </div>
+
+    <!-- 11. RAPID REVISION FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>A token is a sub-word chunk — the unit an AI reads and writes.</td></tr>
+          <tr><td>The mental model</td><td>Tokens are the model's syllables — and a taxi meter you pay per beat.</td></tr>
+          <tr><td>Numbers to memorise</td><td>1 token ≈ 4 characters ≈ ¾ word · 100 tokens ≈ 75 words.</td></tr>
+          <tr><td>Word ≠ token</td><td>Common words = 1 token; long/rare words split into several.</td></tr>
+          <tr><td>What costs money</td><td>Both input <b>and</b> output tokens are billed.</td></tr>
+          <tr><td>What costs time</td><td>Output is generated one token at a time → longer replies are slower.</td></tr>
+          <tr><td>The spelling quirk</td><td>Models can't reliably count letters — they see chunks, not letters.</td></tr>
+          <tr><td>The billing trap</td><td>"Max tokens" limits the reply only, not your input.</td></tr>
+          <tr><td>Language cost</td><td>Non-English text can take 2–3× more tokens.</td></tr>
+          <tr><td>Connects to</td><td>Context window (Note 3) is measured in tokens.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CHEAT SHEET IMAGE -->
     <div class="panel">
       <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
-      <p>Same image as the LinkedIn post for Day 2.</p>
-       Replace with: <img class="cheat-img" src="../assets/day2.jpg" alt="Day 2 cheat sheet"> 
-      <!--<div class="img-placeholder">Drop <b>day2.png</b> into the <code>/assets</code> folder,<br/>then swap this box for the &lt;img&gt; tag.</div>-->
+      <p>The same image shared on the LinkedIn post for Note 2.</p>
+      <img class="cheat-img" src="../assets/day2.jpg" alt="Note 2 cheat sheet — Tokens" />
+    </div>
+
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>Now that you know AI reads in tokens, the next question is: <i>how many</i> can it hold at once?
+         Note 3 — <b>the Context Window</b> — is the AI's little writing desk, measured entirely in
+         tokens.</p>
+      <div class="tags"><span>#Tokens</span><span>#LLM</span><span>#Note2</span><span>#LearnInLove</span></div>
     </div>
 
     <div class="pager">
-      <a class="prev" href="day1.html"><small>Previous · Day 1</small>← What is an LLM?</a>
-      <a class="next" href="day3.html"><small>Next up · Day 3</small>Context Window →</a>
+      <a class="prev" href="day1.html"><small>Previous · Note 1</small>← What is an LLM?</a>
+      <a class="next" href="day3.html"><small>Next · Note 3</small>Context Window →</a>
     </div>
 
   </main>
