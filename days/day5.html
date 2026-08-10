@@ -3,376 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Day 5 - Temperature and Top-P</title>
-  <style>
-    :root {
-      --pink: #ff4f8b;
-      --hot: #ff6b35;
-      --purple: #7b2ff7;
-      --blue: #1464f4;
-      --dark: #20133a;
-      --cream: #fff7e8;
-      --card: rgba(255,255,255,0.88);
-      --shadow: 0 18px 45px rgba(74, 20, 90, 0.18);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 10% 10%, rgba(255,79,139,.28), transparent 28%),
-        radial-gradient(circle at 90% 5%, rgba(123,47,247,.22), transparent 26%),
-        radial-gradient(circle at 55% 95%, rgba(255,107,53,.20), transparent 34%),
-        linear-gradient(135deg, #fff0f5 0%, #fff8e7 45%, #f4edff 100%);
-      line-height: 1.65;
-    }
-    .hearts {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .22;
-      background-image:
-        radial-gradient(circle, #ff4f8b 0 6px, transparent 7px),
-        radial-gradient(circle, #7b2ff7 0 5px, transparent 6px),
-        radial-gradient(circle, #ffb703 0 4px, transparent 5px);
-      background-size: 140px 140px, 170px 170px, 110px 110px;
-      background-position: 0 0, 50px 70px, 90px 30px;
-      z-index: -1;
-    }
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 18px 72px; }
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 26px;
-      align-items: center;
-      min-height: 72vh;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #ff4f8b, #7b2ff7);
-      color: white;
-      font-weight: 800;
-      letter-spacing: .04em;
-      box-shadow: var(--shadow);
-    }
-    h1 {
-      font-size: clamp(42px, 8vw, 92px);
-      line-height: .95;
-      margin: 24px 0 18px;
-      letter-spacing: -0.06em;
-    }
-    .gradient-text {
-      background: linear-gradient(90deg, #ff3366, #7b2ff7, #1464f4);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .subtitle {
-      font-size: clamp(18px, 2.5vw, 26px);
-      font-weight: 650;
-      color: #4c3267;
-      max-width: 720px;
-    }
-    .image-card {
-      background: rgba(255,255,255,.7);
-      border: 1px solid rgba(255,255,255,.8);
-      border-radius: 34px;
-      padding: 14px;
-      box-shadow: var(--shadow);
-      transform: rotate(1deg);
-    }
-    .image-card img { width: 100%; border-radius: 24px; display: block; }
-    .section { margin-top: 40px; }
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.82);
-      border-radius: 30px;
-      padding: clamp(22px, 4vw, 38px);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      margin-bottom: 22px;
-    }
-    .story {
-      font-size: clamp(18px, 2vw, 23px);
-    }
-    .dialogue {
-      display: grid;
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .bubble {
-      width: fit-content;
-      max-width: 94%;
-      padding: 16px 18px;
-      border-radius: 24px;
-      font-weight: 750;
-      box-shadow: 0 10px 24px rgba(0,0,0,.09);
-    }
-    .me { background: #e5f1ff; border-bottom-left-radius: 6px; }
-    .shop { background: #ffe7f0; border-bottom-right-radius: 6px; margin-left: auto; }
-    .lesson-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-    .mini {
-      padding: 22px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,247,232,.86));
-      border: 1px solid rgba(255,255,255,.75);
-    }
-    .mini h3 { margin-top: 0; font-size: 24px; }
-    .knob {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      color: white;
-      font-weight: 850;
-      background: linear-gradient(90deg, var(--pink), var(--purple));
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 20px;
-      background: white;
-      box-shadow: 0 10px 24px rgba(0,0,0,.06);
-    }
-    th, td { padding: 16px; text-align: left; border-bottom: 1px solid #f1e7ff; vertical-align: top; }
-    th { background: #301354; color: white; }
-    tr:last-child td { border-bottom: 0; }
-    .callout {
-      background: linear-gradient(135deg, #ff4f8b, #7b2ff7);
-      color: white;
-      border-radius: 30px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-      font-size: clamp(20px, 2.6vw, 30px);
-      font-weight: 850;
-      text-align: center;
-    }
-    .flashcards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-    .flashcard {
-      min-height: 180px;
-      border-radius: 26px;
-      padding: 22px;
-      background: white;
-      border: 2px dashed rgba(123,47,247,.22);
-      box-shadow: 0 12px 25px rgba(0,0,0,.08);
-    }
-    .flashcard b { color: var(--purple); font-size: 20px; }
-    .linkedin {
-      white-space: pre-wrap;
-      font-size: 18px;
-      background: #fff;
-      border-left: 8px solid var(--pink);
-    }
-    .footer {
-      text-align: center;
-      margin-top: 34px;
-      font-weight: 700;
-      color: #6b587d;
-    }
-    @media (max-width: 860px) {
-      .hero, .lesson-grid, .flashcards { grid-template-columns: 1fr; }
-      .image-card { transform: none; }
-      th, td { display: block; width: 100%; }
-      th { display: none; }
-      td { border-bottom: 0; padding: 12px 16px; }
-      tr { display: block; border-bottom: 1px solid #f1e7ff; padding: 12px 0; }
-    }
-  </style>
+  <title>Note 5 · Temperature and Top-P | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 5 — Temperature and Top-P, the professor's full reference notes for exam prep." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
 </head>
 <body>
-  <div class="hearts"></div>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 5</div>
+      <span class="daytag">Love Note 5</span>
+      <h1>Temperature and Top-P</h1>
+      <p class="lead">The professor's full reference notes — the two dials that decide how safe or how creative an AI answer will be.</p>
+    </div>
+  </header>
+
   <main class="wrap">
-    <section class="hero">
-      <div>
-        <span class="badge">💗 90 Days of Enterprise Agentic AI · Day 5</span>
-        <h1><span class="gradient-text">Temperature</span><br />& Top-P</h1>
-        <p class="subtitle">The tiny AI knobs that decide whether your answer sounds like plain cutting chai, perfect masala chai, or a mystery drink nobody asked for.</p>
-      </div>
-      <div class="image-card">
-        <img src="day5-temperature-top-p.png" alt="Day 5 Temperature and Top-P story infographic" />
-      </div>
-    </section>
 
-    <section class="section card story">
-      <h2>☕ The story: ordering chai from an AI shop</h2>
-      <p>Imagine you walk into a tea shop and say:</p>
-      <div class="dialogue">
-        <div class="bubble me">🧑 “Bhaiya, one cutting chai.”</div>
-        <div class="bubble shop">👨‍🍳 “How creative should I make it?”</div>
-        <div class="bubble me">🧑 “Creative? It is just chai bro.”</div>
-        <div class="bubble shop">👨‍🍳 “Sir, I have two knobs: Temperature and Top-P.”</div>
-      </div>
-      <p>Now the trouble starts. If the shopkeeper keeps both knobs low, you get safe, plain, predictable chai. No drama. No surprise. Perfect when you want consistency.</p>
-      <p>If the shopkeeper turns the knobs to medium, you get proper masala chai. Enough flavor, still under control. This is the sweet spot for most learning posts, explanations, rewrites, and brainstorming.</p>
-      <p>If the shopkeeper turns both knobs high, congratulations. Your chai may come with chocolate syrup, mint leaves, and one random biscuit floating inside. Creative? Yes. Useful? Depends on your courage.</p>
-    </section>
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p><b>Temperature</b> and <b>Top-P</b> are two settings that control how an AI picks its next word. They do not add knowledge and they do not make the model smarter. They only change <i>how it chooses</i> among the words it already considers likely.</p>
+      <p>Here is the mindset shift: at every step the model produces a list of possible next words with probabilities. <b>Temperature reshapes those probabilities; Top-P decides how many of them are even allowed to compete.</b> Low settings give safe, predictable answers. High settings give creative, varied, sometimes surprising ones.</p>
+    </div>
 
-    <section class="section lesson-grid">
-      <div class="mini">
-        <h3>🌡️ Temperature</h3>
-        <p><span class="knob">Creativity spice level</span></p>
-        <p>Temperature changes how random or adventurous the model becomes while choosing the next token.</p>
-        <ul>
-          <li><b>Low temperature:</b> safer, more predictable, more consistent.</li>
-          <li><b>High temperature:</b> more varied, more creative, but less reliable.</li>
-        </ul>
-      </div>
-      <div class="mini">
-        <h3>🧃 Top-P</h3>
-        <p><span class="knob">Choice filter</span></p>
-        <p>Top-P, also called nucleus sampling, decides how wide the candidate pool should be by keeping tokens until their cumulative probability reaches the selected threshold.</p>
-        <ul>
-          <li><b>Low Top-P:</b> narrow choices, safer output.</li>
-          <li><b>High Top-P:</b> wider choices, more variety.</li>
-        </ul>
-      </div>
-    </section>
+    <!-- 2. A DIFFERENT LAYMAN ANALOGY (image uses a coffee café dial; here a NEW one) -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: ordering food with a friend</h2>
+      <p>Imagine asking a friend, <i>"Where should we eat tonight?"</i></p>
+      <p>A <b>low-temperature</b> friend always says the same safe answer: <i>"Our usual place."</i> Reliable, but never surprising. A <b>high-temperature</b> friend throws out bold ideas: <i>"Thai! No wait, that new ramen spot! Or street tacos!"</i> Exciting, but sometimes a little random.</p>
+      <p>Now <b>Top-P</b> is like the size of the menu you let them choose from. A <b>small Top-P</b> means "only pick from our top 3 favourite restaurants." A <b>large Top-P</b> means "pick from every restaurant in the city, even the weird ones." Temperature changes your friend's mood; Top-P changes how big the choice list is.</p>
+    </div>
 
-    <section class="section card">
-      <h2>🧠 Professor-style explanation</h2>
-      <p>When an LLM writes, it does not pull words from magic. It predicts possible next tokens and gives each token a probability. Sampling settings decide how the final token is chosen from that probability list.</p>
-      <p><b>Temperature</b> reshapes the probability distribution. Lower values make the most likely token dominate. Higher values flatten the distribution, allowing less likely tokens to appear more often.</p>
-      <p><b>Top-P</b> filters the list dynamically. Instead of always taking a fixed number of options, it keeps the smallest set of tokens whose combined probability reaches the selected value. Then the model samples from that set.</p>
-    </section>
+    <!-- 3. UNDER THE HOOD -->
+    <div class="panel">
+      <h2><span class="ic">⚙️</span> What actually happens under the hood</h2>
+      <ol>
+        <li>The model looks at your text and produces a probability for every possible next token (Note 2).</li>
+        <li><b>Temperature</b> stretches or flattens those probabilities. Low temperature makes the top choice even more dominant; high temperature makes weaker choices more competitive.</li>
+        <li><b>Top-P (nucleus sampling)</b> then keeps only the smallest group of top words whose probabilities add up to P (for example 0.9), and ignores the long tail of unlikely words.</li>
+        <li>The model randomly samples the next word from whatever survived those two filters, then repeats.</li>
+      </ol>
+      <p>So the order is roughly: <b>probabilities → temperature reshapes them → Top-P trims the pool → sample a word.</b></p>
+    </div>
 
-    <section class="section card">
-      <h2>🎛️ Cheat sheet: when should I use what?</h2>
+    <!-- 4. TEMPERATURE VS TOP-P TABLE -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> Temperature vs Top-P at a glance</h2>
       <table>
-        <thead>
-          <tr><th>Use case</th><th>Suggested behavior</th><th>Why</th></tr>
-        </thead>
+        <thead><tr><th>Aspect</th><th>Temperature</th><th>Top-P (nucleus)</th></tr></thead>
         <tbody>
-          <tr>
-            <td>SQL, code, RCA, production explanation</td>
-            <td>Low temperature + controlled Top-P</td>
-            <td>You want accuracy, consistency, and fewer creative surprises.</td>
-          </tr>
-          <tr>
-            <td>LinkedIn post, learning analogy, rewrite</td>
-            <td>Medium temperature + medium/high Top-P</td>
-            <td>You want fresh wording without losing the point.</td>
-          </tr>
-          <tr>
-            <td>Brainstorming, story ideas, marketing hooks</td>
-            <td>Higher temperature + wider Top-P</td>
-            <td>You want more variety and unexpected angles.</td>
-          </tr>
-          <tr>
-            <td>Financial, legal, medical, security, compliance</td>
-            <td>Low temperature + strict instructions</td>
-            <td>Creativity is not the goal. Correctness and grounding matter more.</td>
-          </tr>
+          <tr><td>Controls</td><td>How boldly probabilities are reshaped.</td><td>How many candidate words are allowed.</td></tr>
+          <tr><td>Low value</td><td>Focused, safe, repetitive.</td><td>Only the very top words. Tight, predictable.</td></tr>
+          <tr><td>High value</td><td>Creative, varied, riskier.</td><td>Wider pool, more variety and surprise.</td></tr>
+          <tr><td>Typical range</td><td>0.0 to 1.0 (sometimes up to 2.0).</td><td>0.0 to 1.0 (often 0.9).</td></tr>
+          <tr><td>Rule of thumb</td><td>Set the mood.</td><td>Set the menu size.</td></tr>
         </tbody>
       </table>
-    </section>
+    </div>
 
-    <section class="section callout">
-      💡 Simple memory trick:<br />Temperature decides how spicy the answer is. Top-P decides how many ingredients the AI is allowed to choose from.
-    </section>
+    <!-- 5. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why it matters</h2>
+      <ul>
+        <li><b>Consistency:</b> low settings make answers reproducible — vital for facts, code, data, and RCA.</li>
+        <li><b>Creativity:</b> high settings help with brainstorming, storytelling, marketing, and idea generation.</li>
+        <li><b>Reliability vs freshness:</b> the same question can feel robotic or lively depending on these dials.</li>
+        <li><b>Debugging:</b> if answers feel too random, lower the values; if too repetitive, raise them.</li>
+        <li><b>Cost and safety:</b> in production, teams usually keep temperature low for predictable, testable behavior.</li>
+      </ul>
+    </div>
 
-    <section class="section card">
-      <h2>⚠️ Common mistake</h2>
-      <p>Many people increase both Temperature and Top-P without knowing why. That is like telling the chai shop: “Make it creative, use any ingredient, and surprise me.” Then they get nonsense and blame the AI.</p>
-      <p>Blunt truth: if the task needs precision, do not ask the model to behave like a freestyle poet.</p>
-    </section>
+    <!-- 6. REAL-WORLD EXAMPLE (different from image) -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: incident summary vs campaign ideas</h2>
+      <p>Suppose you use the same AI for two very different jobs.</p>
+      <table>
+        <thead><tr><th>Task</th><th>Recommended setting</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Summarise an incident and draft an RCA</td><td>Low temperature, low-to-mid Top-P</td><td>You need accurate, consistent, repeatable output you can trust and review.</td></tr>
+          <tr><td>Brainstorm names for a new internal tool</td><td>Higher temperature, higher Top-P</td><td>You want variety, surprise, and many fresh options to choose from.</td></tr>
+        </tbody>
+      </table>
+      <p>Same model, same prompt style — only the dials changed. That is the practical power of understanding these two settings.</p>
+    </div>
 
-    <section class="section card">
-      <h2>🧪 Practical examples</h2>
-      <div class="lesson-grid">
-        <div class="mini">
-          <h3>Low creativity prompt</h3>
-          <p><b>Task:</b> Explain why an Airflow DAG failed using logs.</p>
-          <p><b>Setting mindset:</b> Keep it factual, deterministic, and evidence-based.</p>
-        </div>
-        <div class="mini">
-          <h3>Medium creativity prompt</h3>
-          <p><b>Task:</b> Turn a technical concept into a LinkedIn learning post.</p>
-          <p><b>Setting mindset:</b> Allow fresh examples and clean storytelling.</p>
-        </div>
-        <div class="mini">
-          <h3>High creativity prompt</h3>
-          <p><b>Task:</b> Generate 20 sarcastic hooks for a prompt engineering post.</p>
-          <p><b>Setting mindset:</b> Let the model explore unusual phrasing.</p>
-        </div>
-        <div class="mini">
-          <h3>Bad setting choice</h3>
-          <p><b>Task:</b> Generate a security incident RCA with high creativity.</p>
-          <p><b>Problem:</b> More imagination can mean more hallucination risk.</p>
-        </div>
-      </div>
-    </section>
+    <!-- 7. THINGS NO BOOK TELLS YOU -->
+    <div class="panel callout">
+      <h2><span class="ic">🔒</span> Things no textbook tells you</h2>
+      <ul>
+        <li><b>Do not crank both at once.</b> High temperature <i>and</i> high Top-P together can produce chaotic, off-topic text. Change one dial at a time.</li>
+        <li><b>Temperature 0 is not truly deterministic.</b> It is close to greedy decoding, but hardware and implementation details can still cause tiny differences.</li>
+        <li><b>Creativity is not intelligence.</b> A high temperature does not make the model know more — it just makes it wander more.</li>
+        <li><b>High settings raise hallucination risk.</b> More randomness means more chances to drift away from facts (Note 6).</li>
+        <li><b>Top-P adapts, top-k does not.</b> Top-P keeps a flexible number of words based on probability mass, while the older "top-k" always keeps a fixed count.</li>
+        <li><b>Defaults are opinions.</b> Many tools default around temperature 0.7 and Top-P 0.9 — good for chat, but not always right for your task.</li>
+      </ul>
+    </div>
 
-    <section class="section card">
-      <h2>🃏 Flashcards for revision</h2>
-      <div class="flashcards">
-        <div class="flashcard"><b>Q:</b> What does Temperature control?<br /><br /><b>A:</b> Randomness and creativity in token selection.</div>
-        <div class="flashcard"><b>Q:</b> What does low Temperature do?<br /><br /><b>A:</b> Makes the model more predictable and focused.</div>
-        <div class="flashcard"><b>Q:</b> What does high Temperature do?<br /><br /><b>A:</b> Makes output more varied, creative, and risky.</div>
-        <div class="flashcard"><b>Q:</b> What does Top-P control?<br /><br /><b>A:</b> The size of the probability-based token candidate pool.</div>
-        <div class="flashcard"><b>Q:</b> What is Top-P also called?<br /><br /><b>A:</b> Nucleus sampling.</div>
-        <div class="flashcard"><b>Q:</b> Best mindset for production tasks?<br /><br /><b>A:</b> Lower randomness, clearer prompt, stronger grounding.</div>
-      </div>
-    </section>
+    <!-- 8. PITFALLS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common pitfalls &amp; misconceptions</h2>
+      <ul>
+        <li><b>"Higher temperature means smarter."</b> No. It means more random, not more knowledgeable.</li>
+        <li><b>"Temperature and Top-P are the same thing."</b> No. One reshapes probabilities, the other limits the candidate pool.</li>
+        <li><b>"Temperature 0 gives the perfect answer."</b> No. It gives the most predictable answer, not always the best one.</li>
+        <li><b>"These settings fix hallucination."</b> No. Lower values reduce randomness, but grounding still matters.</li>
+        <li><b>"One setting fits every task."</b> No. Facts want low, creativity wants high.</li>
+      </ul>
+    </div>
 
-    <section class="section card linkedin">
-🔥 Day 5: Temperature & Top-P
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test</h2>
+      <ol>
+        <li><b>What does temperature control?</b><br/>How boldly the model reshapes its next-word probabilities.</li>
+        <li><b>What does Top-P control?</b><br/>How many likely words are allowed into the candidate pool.</li>
+        <li><b>Which setting for factual, repeatable answers?</b><br/>Low temperature (and modest Top-P).</li>
+        <li><b>Which setting for brainstorming?</b><br/>Higher temperature and higher Top-P.</li>
+        <li><b>Does high temperature make AI more knowledgeable?</b><br/>No — only more random and varied.</li>
+        <li><b>What is a safe habit when tuning?</b><br/>Change one dial at a time and test the result.</li>
+      </ol>
+    </div>
 
-Every tea shop has had AI settings before AI became cool. ☕🤖
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Temperature:</b> a setting that reshapes next-word probabilities (safe vs creative).</li>
+        <li><b>Top-P (nucleus sampling):</b> keeps the smallest set of top words summing to probability P.</li>
+        <li><b>Top-K:</b> an older method that keeps a fixed number of top words.</li>
+        <li><b>Sampling:</b> randomly choosing the next word from the allowed candidates.</li>
+        <li><b>Greedy decoding:</b> always choosing the single most likely word.</li>
+        <li><b>Determinism:</b> getting the same output every time for the same input.</li>
+      </ul>
+    </div>
 
-You ask:
-“Bhaiya, one cutting chai.”
+    <!-- 11. RAPID REVISION FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard</h2>
+      <table>
+        <tbody>
+          <tr><td>Define temperature</td><td>How boldly AI reshapes word probabilities — low is safe, high is creative.</td></tr>
+          <tr><td>Define Top-P</td><td>The smallest group of most-likely words allowed to compete.</td></tr>
+          <tr><td>Mental model</td><td>Temperature = your friend's mood. Top-P = the size of the menu.</td></tr>
+          <tr><td>Low settings</td><td>Focused, consistent, factual, repeatable.</td></tr>
+          <tr><td>High settings</td><td>Creative, varied, surprising, riskier.</td></tr>
+          <tr><td>Use LOW for</td><td>Facts, code, data, RCA, structured output.</td></tr>
+          <tr><td>Use HIGH for</td><td>Brainstorming, stories, marketing, ideas.</td></tr>
+          <tr><td>Golden habit</td><td>Change one dial at a time, not both.</td></tr>
+          <tr><td>Warning</td><td>High settings raise hallucination risk.</td></tr>
+          <tr><td>Not true</td><td>Higher temperature does not mean smarter.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-Shopkeeper asks:
-“How creative should I make it?” 😅
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 5.</p>
+      <img class="cheat-img" src="../assets/day5.png" alt="Note 5 cheat sheet — Temperature and Top-P" />
+    </div>
 
-Low Temperature:
-Plain, safe, predictable chai.
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>You now control how safe or creative AI is. But more creativity brings more risk of confident mistakes. Note 6 — <b>Hallucination</b> — is where we learn why AI sometimes sounds sure but is completely wrong.</p>
+      <div class="tags"><span>#Temperature</span><span>#TopP</span><span>#LLM</span><span>#Note5</span><span>#LearnInLove</span></div>
+    </div>
 
-Medium Temperature:
-Perfect masala chai. Flavorful, but still useful.
+    <div class="pager">
+      <a class="prev" href="day4.html"><small>Previous · Note 4</small>← Prompt Engineering</a>
+      <a class="next" href="day6.html"><small>Next · Note 6</small>Hallucination →</a>
+    </div>
 
-High Temperature:
-Chocolate-mint-elaichi mystery chai with one biscuit floating inside. 😂
-
-That is exactly how AI works.
-
-🌡️ Temperature = creativity spice level
-🧃 Top-P = how wide the choice basket is
-
-Low settings give safe answers.
-Medium settings give balanced answers.
-High settings give surprising answers.
-
-But here is the warning:
-If you ask for an RCA, SQL fix, or production issue analysis with high creativity, don’t be shocked if the AI starts writing poetry about your broken DAG. 💀
-
-The lesson:
-🎯 Better settings = better AI output.
-
-Prompting tells AI what you want.
-Temperature and Top-P decide how boldly it answers.
-
-#AI #PromptEngineering #GenAI #LLM #Temperature #TopP #MachineLearning #DataEngineering #AgenticAI #TechLearning
-    </section>
-
-    <section class="section card">
-      <h2>🔗 Website link line</h2>
-      <p>📘 Full Day 5 Temperature & Top-P notes + visual cheat sheet here: <b>[Your Website Link]</b></p>
-    </section>
-
-    <footer class="footer">💗 Learn with love · One concept a day · Day 5 complete</footer>
   </main>
+
+  <footer><div class="wrap">Love Note 5 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
 </body>
 </html>
