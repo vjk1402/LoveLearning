@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 6 · Hallucination | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 6 — Hallucination, the professor's full reference notes for exam prep." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 6</div>
+      <span class="daytag">Love Note 6</span>
+      <h1>Hallucination</h1>
+      <p class="lead">The professor's full reference notes — everything I'd want you to know before the exam.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>An AI <b>hallucination</b> is when a model produces something that sounds fluent, confident, and
+         plausible — but is <b>factually wrong or entirely made up</b>. A fake citation, an invented
+         statistic, a person who never existed, a function that isn't in the library. It's not lying, and
+         it's not a bug in the usual sense. It is the model doing exactly what it was built to do:
+         <i>predict the most likely next words</i>, whether or not those words are true.</p>
+      <p>Here is the mindset shift: <b>a language model is a fluency engine, not a truth engine.</b> It
+         optimises for "what text usually comes next," not "what is correct." Truth is often a
+         <i>side-effect</i> of fluency — not a guarantee.</p>
+    </div>
+
+    <!-- 2. A DIFFERENT LAYMAN ANALOGY (image uses overconfident student; here a NEW one) -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: the smooth-talking tour guide</h2>
+      <p>Imagine a charming tour guide leading you through an old city. They <i>never</i> say "I don't
+         know." Ask about any statue, any date, any legend, and they answer instantly — warm, detailed,
+         utterly convincing. Ninety percent of the time they're right. But when they don't know, they
+         <b>don't pause — they improvise a beautiful story</b>, delivered with the exact same confidence
+         as the true ones.</p>
+      <p>The danger isn't the lie itself — it's that <b>the fake answer sounds identical to the real
+         ones</b>. There's no nervous stammer, no change in tone to warn you. That is precisely what
+         makes AI hallucinations risky: the model is <i>equally confident</i> whether it's recalling a
+         fact or inventing one.</p>
+      <p><b>The lesson:</b> confidence is not evidence. With AI, the tone of certainty tells you nothing
+         about whether the content is true.</p>
+    </div>
+
+    <!-- 3. WHY IT HAPPENS -->
+    <div class="panel">
+      <h2><span class="ic">⚙️</span> Why hallucinations happen (the root causes)</h2>
+      <ol>
+        <li><b>Prediction, not lookup.</b> The model generates the statistically likely next token — it
+            has no internal fact-checker verifying claims against reality.</li>
+        <li><b>Gaps in training data.</b> When it never learned something (or learned it wrong), it fills
+            the hole with a plausible-sounding guess rather than admitting the gap.</li>
+        <li><b>Pressure to always answer.</b> Models are tuned to be helpful and rarely refuse, so
+            "I don't know" is under-produced — a guess feels more helpful than a blank.</li>
+        <li><b>Blurry memory.</b> Facts aren't stored as exact records but as fuzzy statistical patterns,
+            so details (dates, names, numbers) get smeared or swapped.</li>
+        <li><b>Leading prompts.</b> Ask "list 3 studies proving X" and the model will happily
+            <i>manufacture</i> three studies, because your prompt assumed they exist.</li>
+      </ol>
+    </div>
+
+    <!-- 4. TYPES -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> The main types of hallucination</h2>
+      <table>
+        <thead><tr><th>Type</th><th>What it looks like</th></tr></thead>
+        <tbody>
+          <tr><td>Factual</td><td>States a wrong fact — wrong date, wrong inventor, wrong number.</td></tr>
+          <tr><td>Fabrication</td><td>Invents something whole — a fake study, quote, URL, or citation.</td></tr>
+          <tr><td>Faithfulness</td><td>Contradicts the source you gave it (summary says something the document doesn't).</td></tr>
+          <tr><td>Instruction drift</td><td>Confidently answers a slightly different question than the one asked.</td></tr>
+        </tbody>
+      </table>
+      <p>The <b>faithfulness</b> type matters most for our future work: even with the right document in
+         hand, a model can still summarise it <i>incorrectly</i>. That's the exact failure RAG evaluation
+         is built to catch (Chapter Three 💕).</p>
+    </div>
+
+    <!-- 5. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why it matters (and where it bites)</h2>
+      <ul>
+        <li><b>Fake citations &amp; law.</b> Lawyers have been sanctioned for filing AI-invented cases
+            that looked real but never existed.</li>
+        <li><b>Code that doesn't exist.</b> Models confidently call functions or libraries that were
+            never written — "package hallucination."</li>
+        <li><b>Medical &amp; financial risk.</b> A confident wrong dosage or number can cause real harm,
+            precisely because it reads so authoritatively.</li>
+        <li><b>Trust erosion.</b> One confident falsehood makes users doubt the ninety true answers
+            around it.</li>
+        <li><b>It's the #1 barrier to enterprise AI adoption</b> — and the reason grounding, citations,
+            and human review exist.</li>
+      </ul>
+    </div>
+
+    <!-- 6. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: the runbook that never was</h2>
+      <p>An on-call engineer asks an AI assistant: <i>"What's the rollback step for the payments service
+         in our runbook?"</i> The model replies with a crisp, numbered procedure — command names,
+         flags, a config path — all beautifully formatted. The problem? <b>That runbook step doesn't
+         exist.</b> The model pattern-matched what a rollback <i>usually</i> looks like and invented a
+         confident version.</p>
+      <p>This is why grounding matters: instead of letting the model guess, you <b>retrieve the actual
+         runbook and force the answer to cite it</b> — "answer only from this document; if it's not
+         here, say so." That single guardrail turns a dangerous guess into a trustworthy answer. It's the
+         whole reason RAG exists (Chapter Two).</p>
+    </div>
+
+    <!-- 7. HOW TO REDUCE IT -->
+    <div class="panel callout">
+      <h2><span class="ic">🛡️</span> How to reduce hallucinations (practical toolkit)</h2>
+      <ul>
+        <li><b>Ground it (RAG).</b> Give the model the real source and say "answer only from this."</li>
+        <li><b>Give permission to fail.</b> "If you're not sure, say 'I don't know' — do not guess."</li>
+        <li><b>Ask for citations.</b> "Quote the exact sentence you used." Unsourced claims become easy to
+            spot.</li>
+        <li><b>Lower the temperature</b> for factual tasks (Note 5) — less randomness, fewer creative
+            inventions.</li>
+        <li><b>Use step-by-step reasoning</b> for logic, so mistakes surface instead of hiding in a
+            confident one-liner.</li>
+        <li><b>Verify the important stuff.</b> Treat AI as a brilliant first draft, not a final source —
+            always double-check facts, numbers, and citations.</li>
+      </ul>
+    </div>
+
+    <!-- 8. PITFALLS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"Hallucination means the AI is broken."</b> No — it's a natural side-effect of how all
+            LLMs work.</li>
+        <li><b>"Confident tone means it's correct."</b> No — confidence and accuracy are unrelated in a
+            model.</li>
+        <li><b>"Bigger/newer models don't hallucinate."</b> They hallucinate <i>less</i>, but never zero.</li>
+        <li><b>"Giving it the document guarantees a correct answer."</b> No — it can still misread the
+            source (faithfulness errors).</li>
+        <li><b>"It's lying."</b> No — lying needs intent; the model has none. It simply predicts words.</li>
+      </ul>
+    </div>
+
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>What is an AI hallucination?</b><br/>A confident, fluent output that is factually wrong or
+            fabricated.</li>
+        <li><b>Why do they happen?</b><br/>Models predict likely words, not verified facts — no built-in
+            fact-checker.</li>
+        <li><b>Does a confident tone mean the answer is right?</b><br/>No — confidence is unrelated to
+            accuracy.</li>
+        <li><b>What's a faithfulness hallucination?</b><br/>When the answer contradicts the source
+            document it was given.</li>
+        <li><b>Name two ways to reduce hallucinations.</b><br/>Ground with real sources (RAG) and give
+            permission to say "I don't know."</li>
+        <li><b>Is it the same as lying?</b><br/>No — lying requires intent; this is a prediction
+            side-effect.</li>
+      </ol>
+    </div>
+
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Hallucination</b> — confident output that is false or fabricated.</li>
+        <li><b>Grounding</b> — tying answers to a real, provided source.</li>
+        <li><b>Faithfulness</b> — whether an answer stays true to its source (our Note 34).</li>
+        <li><b>Fabrication</b> — invented facts, quotes, or citations.</li>
+        <li><b>Confabulation</b> — the technical cousin term: filling gaps with plausible fiction.</li>
+        <li><b>RAG</b> — retrieval that grounds answers to reduce hallucination (Chapter Two).</li>
+      </ul>
+    </div>
+
+    <!-- 11. RAPID REVISION FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>A confident, fluent AI answer that is factually wrong or made up.</td></tr>
+          <tr><td>The mental model</td><td>A smooth tour guide who never says "I don't know" — and improvises with a straight face.</td></tr>
+          <tr><td>Root cause</td><td>Models predict likely words, not verified facts — no internal fact-checker.</td></tr>
+          <tr><td>The danger</td><td>Fake answers sound identical to true ones — confidence ≠ accuracy.</td></tr>
+          <tr><td>Main types</td><td>Factual · Fabrication · Faithfulness · Instruction drift.</td></tr>
+          <tr><td>Top fixes</td><td>Ground with sources (RAG) · allow "I don't know" · ask for citations · lower temperature.</td></tr>
+          <tr><td>Even with a source</td><td>It can still misread it — a faithfulness error.</td></tr>
+          <tr><td>Not lying</td><td>No intent — it's a prediction side-effect.</td></tr>
+          <tr><td>Golden rule</td><td>Treat AI as a brilliant first draft; verify anything that matters.</td></tr>
+          <tr><td>Connects to</td><td>RAG (Chapter Two) exists largely to fight this.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 6.</p>
+      <img class="cheat-img" src="../assets/day6.png" alt="Note 6 cheat sheet — Hallucination" />
+    </div>
+
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>If hallucination is AI's biggest weakness, the cure begins by teaching it to <i>look things up</i>
+         instead of guessing. Note 7 — <b>Embeddings</b> — is the first step: turning words into meaning
+         a machine can actually search. 💕</p>
+      <div class="tags"><span>#Hallucination</span><span>#LLM</span><span>#Note6</span><span>#LearnInLove</span></div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="day5.html"><small>Previous · Note 5</small>← Temperature</a>
+      <a class="next" href="day7.html"><small>Next · Note 7</small>Embeddings →</a>
+    </div>
+
+  </main>
+
+  <footer><div class="wrap">Love Note 6 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>

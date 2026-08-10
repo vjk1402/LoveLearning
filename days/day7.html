@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 7 · System Prompt vs User Prompt | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 7 — System Prompt vs User Prompt, the professor's full reference notes for exam prep." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 7</div>
+      <span class="daytag">Love Note 7</span>
+      <h1>System Prompt vs User Prompt</h1>
+      <p class="lead">The professor's full reference notes — how hidden instructions and visible requests shape every AI answer.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>A <b>system prompt</b> is the higher-level instruction that defines how the AI should behave: its role, tone, boundaries, safety rules, and output style. A <b>user prompt</b> is the visible instruction or question typed by the user for the current task.</p>
+      <p>Here is the mindset shift: <b>the user prompt asks for the job; the system prompt defines the working rules.</b> If the user prompt is the scene, the system prompt is the director's note that tells the actor what character to play, what lines never to cross, and what style to maintain.</p>
+    </div>
+
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: restaurant kitchen rules vs customer order</h2>
+      <p>Imagine a restaurant kitchen. Before any customer walks in, the head chef has rules written on the wall: maintain hygiene, do not use expired ingredients, keep food vegetarian if the kitchen is vegetarian, plate neatly, and speak politely to guests. Those rules are always active in the background.</p>
+      <p>Then a customer says, <i>"I want a spicy dosa."</i> That is the customer order. The kitchen follows the customer's request, but only within the kitchen rules.</p>
+      <p><b>The lesson:</b> the system prompt is the kitchen rulebook. The user prompt is today's order. A good AI answer needs both: stable rules plus a clear request.</p>
+    </div>
+
+    <div class="panel">
+      <h2><span class="ic">⚙️</span> What actually happens inside a chat</h2>
+      <ol>
+        <li>The app sends the model a stack of messages, not just your latest sentence.</li>
+        <li>The <b>system message</b> usually appears first and gives broad instructions about role, behavior, scope, tone, and safety.</li>
+        <li>The <b>user message</b> contains the actual task: explain, summarize, write, compare, debug, classify, or answer.</li>
+        <li>The model then generates the assistant response while trying to satisfy the higher-level instructions and the current user request.</li>
+      </ol>
+      <p>Important: a system prompt strongly influences behavior, but it is not magic. Good applications still need testing, evaluation, guardrails, retrieval, filtering, and human review for important use cases.</p>
+    </div>
+
+    <div class="panel">
+      <h2><span class="ic">🧩</span> System prompt vs user prompt at a glance</h2>
+      <table>
+        <thead>
+          <tr><th>Aspect</th><th>System Prompt</th><th>User Prompt</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Purpose</td><td>Sets behavior, role, boundaries, tone, and format rules.</td><td>Asks the current question or task.</td></tr>
+          <tr><td>Visibility</td><td>Usually hidden from the end user.</td><td>Visible and typed by the user.</td></tr>
+          <tr><td>Scope</td><td>Applies across the conversation or application.</td><td>Applies to the current request.</td></tr>
+          <tr><td>Example</td><td>"You are a careful tutor. Explain simply. Do not invent facts."</td><td>"Explain context window with an example."</td></tr>
+          <tr><td>Failure mode</td><td>Weak rules create inconsistent or unsafe behavior.</td><td>Vague asks create vague or wrong outputs.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why this matters</h2>
+      <ul>
+        <li><b>Consistency:</b> system prompts make the assistant behave the same way across many users and many tasks.</li>
+        <li><b>Safety:</b> system prompts define boundaries, refusal behavior, sensitive-data handling, and fallback rules.</li>
+        <li><b>Quality:</b> system prompts can enforce structure, tone, citations, output format, and response style.</li>
+        <li><b>Debugging:</b> when an answer goes wrong, you must ask: was the user prompt unclear, or was the system prompt weak?</li>
+        <li><b>Enterprise use:</b> production AI assistants rely on system prompts to maintain role, scope, and behavior at scale.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: customer support assistant</h2>
+      <p>Suppose a company builds an AI support assistant.</p>
+      <table>
+        <thead><tr><th>Layer</th><th>Instruction</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>System prompt</td><td>"You are a customer support assistant. Be polite. Use only approved policy. If refund rules are unclear, ask the user to contact support. Do not promise refunds."</td><td>Keeps the assistant safe, consistent, and aligned with policy.</td></tr>
+          <tr><td>User prompt</td><td>"Can I get a refund for my order?"</td><td>Defines the specific task the user needs help with.</td></tr>
+          <tr><td>Good response</td><td>"I can help check the general refund guidance. Please share the order status. If the policy does not cover this case, contact support."</td><td>Helpful, but does not overpromise.</td></tr>
+        </tbody>
+      </table>
+      <p>This is exactly why system prompts matter. Without the hidden rule, the model may try to be helpful by promising something the business cannot honor.</p>
+    </div>
+
+    <div class="panel callout">
+      <h2><span class="ic">🔒</span> Things no textbook tells you</h2>
+      <ul>
+        <li><b>A system prompt is not a security wall.</b> It guides behavior, but users may still try prompt injection. Treat system prompts as one layer, not the whole defense.</li>
+        <li><b>Conflicting instructions reduce quality.</b> If your system prompt says "be concise" but your user prompt asks for "very detailed," the answer may wobble unless the priority is clear.</li>
+        <li><b>Hidden does not mean impossible to infer.</b> Users may guess system behavior by observing outputs, so never put secrets, passwords, or API keys in prompts.</li>
+        <li><b>System prompts age badly.</b> As an AI app grows, old instructions become messy. Treat the system prompt like production code: version, test, review, and refactor it.</li>
+        <li><b>The best system prompts define fallback behavior.</b> "If you do not know, say you do not know" is often more valuable than ten style rules.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common pitfalls &amp; misconceptions</h2>
+      <ul>
+        <li><b>"System prompt guarantees obedience."</b> No. It influences strongly, but still needs testing and guardrails.</li>
+        <li><b>"User prompt is less important."</b> No. A weak user prompt can still produce a weak answer.</li>
+        <li><b>"Longer system prompt is always better."</b> No. Long, conflicting rules confuse the model and waste context.</li>
+        <li><b>"System prompt should contain secrets."</b> Never. Prompts are not secret vaults.</li>
+        <li><b>"One system prompt fits every use case."</b> No. A tutor, SRE assistant, legal assistant, and customer support bot need different rules.</li>
+      </ul>
+    </div>
+
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test</h2>
+      <ol>
+        <li><b>What does a system prompt do?</b><br/>It sets high-level behavior, role, tone, boundaries, and formatting rules.</li>
+        <li><b>What does a user prompt do?</b><br/>It gives the current task, question, or instruction.</li>
+        <li><b>Which one is usually hidden?</b><br/>The system prompt.</li>
+        <li><b>Can a system prompt fully prevent bad behavior?</b><br/>No. It is one layer and needs testing, filters, grounding, and human review.</li>
+        <li><b>What is the restaurant analogy?</b><br/>System prompt = kitchen rules. User prompt = customer order.</li>
+        <li><b>What should a good system prompt include?</b><br/>Role, scope, tone, output format, safety boundaries, and fallback behavior.</li>
+      </ol>
+    </div>
+
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>System prompt:</b> high-level instruction that guides model behavior.</li>
+        <li><b>User prompt:</b> user’s task or question.</li>
+        <li><b>Assistant message:</b> the model’s response.</li>
+        <li><b>Instruction hierarchy:</b> the idea that some instructions have higher priority than others.</li>
+        <li><b>Prompt injection:</b> a user attempt to override or manipulate hidden instructions.</li>
+        <li><b>Fallback behavior:</b> what the assistant should do when unsure, unsafe, or out of scope.</li>
+      </ul>
+    </div>
+
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard</h2>
+      <table>
+        <tbody>
+          <tr><td>Define system prompt</td><td>Hidden high-level rules that shape role, tone, boundaries, and output style.</td></tr>
+          <tr><td>Define user prompt</td><td>The visible ask typed by the user for the current task.</td></tr>
+          <tr><td>Mental model</td><td>System prompt = kitchen rules. User prompt = customer order.</td></tr>
+          <tr><td>System prompt controls</td><td>Behavior, scope, safety, tone, format, fallback behavior.</td></tr>
+          <tr><td>User prompt controls</td><td>Task, topic, input details, desired output for this turn.</td></tr>
+          <tr><td>Best system prompts</td><td>Clear, short, testable, non-conflicting, with fallback rules.</td></tr>
+          <tr><td>Big warning</td><td>Never store secrets in prompts.</td></tr>
+          <tr><td>Debug question</td><td>Was the user unclear, or were the system rules weak?</td></tr>
+          <tr><td>Exam line</td><td>System prompt shapes the assistant. User prompt shapes the task.</td></tr>
+          <tr><td>Next topic</td><td>Few-shot prompting: teaching AI with examples.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 7.</p>
+      <img class="cheat-img" src="../assets/day7.png" alt="Note 7 cheat sheet — System Prompt vs User Prompt" />
+    </div>
+
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>Now that you know the difference between hidden rules and visible requests, the next step is learning how to improve answers by showing examples. Note 8 — <b>Few-Shot Prompting</b> — is where prompting starts to feel like teaching.</p>
+      <div class="tags"><span>#SystemPrompt</span><span>#UserPrompt</span><span>#LLM</span><span>#Note7</span><span>#LearnInLove</span></div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="day6.html"><small>Previous · Note 6</small>← Hallucination</a>
+      <a class="next" href="day8.html"><small>Next · Note 8</small>Few-Shot Prompting →</a>
+    </div>
+
+  </main>
+
+  <footer><div class="wrap">Love Note 7 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
