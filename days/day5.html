@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 5 - Temperature and Top-P</title>
+  <style>
+    :root {
+      --pink: #ff4f8b;
+      --hot: #ff6b35;
+      --purple: #7b2ff7;
+      --blue: #1464f4;
+      --dark: #20133a;
+      --cream: #fff7e8;
+      --card: rgba(255,255,255,0.88);
+      --shadow: 0 18px 45px rgba(74, 20, 90, 0.18);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--dark);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,79,139,.28), transparent 28%),
+        radial-gradient(circle at 90% 5%, rgba(123,47,247,.22), transparent 26%),
+        radial-gradient(circle at 55% 95%, rgba(255,107,53,.20), transparent 34%),
+        linear-gradient(135deg, #fff0f5 0%, #fff8e7 45%, #f4edff 100%);
+      line-height: 1.65;
+    }
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        radial-gradient(circle, #ff4f8b 0 6px, transparent 7px),
+        radial-gradient(circle, #7b2ff7 0 5px, transparent 6px),
+        radial-gradient(circle, #ffb703 0 4px, transparent 5px);
+      background-size: 140px 140px, 170px 170px, 110px 110px;
+      background-position: 0 0, 50px 70px, 90px 30px;
+      z-index: -1;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 18px 72px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: center;
+      min-height: 72vh;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff4f8b, #7b2ff7);
+      color: white;
+      font-weight: 800;
+      letter-spacing: .04em;
+      box-shadow: var(--shadow);
+    }
+    h1 {
+      font-size: clamp(42px, 8vw, 92px);
+      line-height: .95;
+      margin: 24px 0 18px;
+      letter-spacing: -0.06em;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #ff3366, #7b2ff7, #1464f4);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .subtitle {
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 650;
+      color: #4c3267;
+      max-width: 720px;
+    }
+    .image-card {
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 34px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      transform: rotate(1deg);
+    }
+    .image-card img { width: 100%; border-radius: 24px; display: block; }
+    .section { margin-top: 40px; }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: 30px;
+      padding: clamp(22px, 4vw, 38px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 22px;
+    }
+    .story {
+      font-size: clamp(18px, 2vw, 23px);
+    }
+    .dialogue {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .bubble {
+      width: fit-content;
+      max-width: 94%;
+      padding: 16px 18px;
+      border-radius: 24px;
+      font-weight: 750;
+      box-shadow: 0 10px 24px rgba(0,0,0,.09);
+    }
+    .me { background: #e5f1ff; border-bottom-left-radius: 6px; }
+    .shop { background: #ffe7f0; border-bottom-right-radius: 6px; margin-left: auto; }
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .mini {
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,247,232,.86));
+      border: 1px solid rgba(255,255,255,.75);
+    }
+    .mini h3 { margin-top: 0; font-size: 24px; }
+    .knob {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: white;
+      font-weight: 850;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    }
+    th, td { padding: 16px; text-align: left; border-bottom: 1px solid #f1e7ff; vertical-align: top; }
+    th { background: #301354; color: white; }
+    tr:last-child td { border-bottom: 0; }
+    .callout {
+      background: linear-gradient(135deg, #ff4f8b, #7b2ff7);
+      color: white;
+      border-radius: 30px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      font-size: clamp(20px, 2.6vw, 30px);
+      font-weight: 850;
+      text-align: center;
+    }
+    .flashcards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .flashcard {
+      min-height: 180px;
+      border-radius: 26px;
+      padding: 22px;
+      background: white;
+      border: 2px dashed rgba(123,47,247,.22);
+      box-shadow: 0 12px 25px rgba(0,0,0,.08);
+    }
+    .flashcard b { color: var(--purple); font-size: 20px; }
+    .linkedin {
+      white-space: pre-wrap;
+      font-size: 18px;
+      background: #fff;
+      border-left: 8px solid var(--pink);
+    }
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      font-weight: 700;
+      color: #6b587d;
+    }
+    @media (max-width: 860px) {
+      .hero, .lesson-grid, .flashcards { grid-template-columns: 1fr; }
+      .image-card { transform: none; }
+      th, td { display: block; width: 100%; }
+      th { display: none; }
+      td { border-bottom: 0; padding: 12px 16px; }
+      tr { display: block; border-bottom: 1px solid #f1e7ff; padding: 12px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="badge">💗 90 Days of Enterprise Agentic AI · Day 5</span>
+        <h1><span class="gradient-text">Temperature</span><br />& Top-P</h1>
+        <p class="subtitle">The tiny AI knobs that decide whether your answer sounds like plain cutting chai, perfect masala chai, or a mystery drink nobody asked for.</p>
+      </div>
+      <div class="image-card">
+        <img src="day5-temperature-top-p.png" alt="Day 5 Temperature and Top-P story infographic" />
+      </div>
+    </section>
+
+    <section class="section card story">
+      <h2>☕ The story: ordering chai from an AI shop</h2>
+      <p>Imagine you walk into a tea shop and say:</p>
+      <div class="dialogue">
+        <div class="bubble me">🧑 “Bhaiya, one cutting chai.”</div>
+        <div class="bubble shop">👨‍🍳 “How creative should I make it?”</div>
+        <div class="bubble me">🧑 “Creative? It is just chai bro.”</div>
+        <div class="bubble shop">👨‍🍳 “Sir, I have two knobs: Temperature and Top-P.”</div>
+      </div>
+      <p>Now the trouble starts. If the shopkeeper keeps both knobs low, you get safe, plain, predictable chai. No drama. No surprise. Perfect when you want consistency.</p>
+      <p>If the shopkeeper turns the knobs to medium, you get proper masala chai. Enough flavor, still under control. This is the sweet spot for most learning posts, explanations, rewrites, and brainstorming.</p>
+      <p>If the shopkeeper turns both knobs high, congratulations. Your chai may come with chocolate syrup, mint leaves, and one random biscuit floating inside. Creative? Yes. Useful? Depends on your courage.</p>
+    </section>
+
+    <section class="section lesson-grid">
+      <div class="mini">
+        <h3>🌡️ Temperature</h3>
+        <p><span class="knob">Creativity spice level</span></p>
+        <p>Temperature changes how random or adventurous the model becomes while choosing the next token.</p>
+        <ul>
+          <li><b>Low temperature:</b> safer, more predictable, more consistent.</li>
+          <li><b>High temperature:</b> more varied, more creative, but less reliable.</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <h3>🧃 Top-P</h3>
+        <p><span class="knob">Choice filter</span></p>
+        <p>Top-P, also called nucleus sampling, decides how wide the candidate pool should be by keeping tokens until their cumulative probability reaches the selected threshold.</p>
+        <ul>
+          <li><b>Low Top-P:</b> narrow choices, safer output.</li>
+          <li><b>High Top-P:</b> wider choices, more variety.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>🧠 Professor-style explanation</h2>
+      <p>When an LLM writes, it does not pull words from magic. It predicts possible next tokens and gives each token a probability. Sampling settings decide how the final token is chosen from that probability list.</p>
+      <p><b>Temperature</b> reshapes the probability distribution. Lower values make the most likely token dominate. Higher values flatten the distribution, allowing less likely tokens to appear more often.</p>
+      <p><b>Top-P</b> filters the list dynamically. Instead of always taking a fixed number of options, it keeps the smallest set of tokens whose combined probability reaches the selected value. Then the model samples from that set.</p>
+    </section>
+
+    <section class="section card">
+      <h2>🎛️ Cheat sheet: when should I use what?</h2>
+      <table>
+        <thead>
+          <tr><th>Use case</th><th>Suggested behavior</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SQL, code, RCA, production explanation</td>
+            <td>Low temperature + controlled Top-P</td>
+            <td>You want accuracy, consistency, and fewer creative surprises.</td>
+          </tr>
+          <tr>
+            <td>LinkedIn post, learning analogy, rewrite</td>
+            <td>Medium temperature + medium/high Top-P</td>
+            <td>You want fresh wording without losing the point.</td>
+          </tr>
+          <tr>
+            <td>Brainstorming, story ideas, marketing hooks</td>
+            <td>Higher temperature + wider Top-P</td>
+            <td>You want more variety and unexpected angles.</td>
+          </tr>
+          <tr>
+            <td>Financial, legal, medical, security, compliance</td>
+            <td>Low temperature + strict instructions</td>
+            <td>Creativity is not the goal. Correctness and grounding matter more.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section callout">
+      💡 Simple memory trick:<br />Temperature decides how spicy the answer is. Top-P decides how many ingredients the AI is allowed to choose from.
+    </section>
+
+    <section class="section card">
+      <h2>⚠️ Common mistake</h2>
+      <p>Many people increase both Temperature and Top-P without knowing why. That is like telling the chai shop: “Make it creative, use any ingredient, and surprise me.” Then they get nonsense and blame the AI.</p>
+      <p>Blunt truth: if the task needs precision, do not ask the model to behave like a freestyle poet.</p>
+    </section>
+
+    <section class="section card">
+      <h2>🧪 Practical examples</h2>
+      <div class="lesson-grid">
+        <div class="mini">
+          <h3>Low creativity prompt</h3>
+          <p><b>Task:</b> Explain why an Airflow DAG failed using logs.</p>
+          <p><b>Setting mindset:</b> Keep it factual, deterministic, and evidence-based.</p>
+        </div>
+        <div class="mini">
+          <h3>Medium creativity prompt</h3>
+          <p><b>Task:</b> Turn a technical concept into a LinkedIn learning post.</p>
+          <p><b>Setting mindset:</b> Allow fresh examples and clean storytelling.</p>
+        </div>
+        <div class="mini">
+          <h3>High creativity prompt</h3>
+          <p><b>Task:</b> Generate 20 sarcastic hooks for a prompt engineering post.</p>
+          <p><b>Setting mindset:</b> Let the model explore unusual phrasing.</p>
+        </div>
+        <div class="mini">
+          <h3>Bad setting choice</h3>
+          <p><b>Task:</b> Generate a security incident RCA with high creativity.</p>
+          <p><b>Problem:</b> More imagination can mean more hallucination risk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>🃏 Flashcards for revision</h2>
+      <div class="flashcards">
+        <div class="flashcard"><b>Q:</b> What does Temperature control?<br /><br /><b>A:</b> Randomness and creativity in token selection.</div>
+        <div class="flashcard"><b>Q:</b> What does low Temperature do?<br /><br /><b>A:</b> Makes the model more predictable and focused.</div>
+        <div class="flashcard"><b>Q:</b> What does high Temperature do?<br /><br /><b>A:</b> Makes output more varied, creative, and risky.</div>
+        <div class="flashcard"><b>Q:</b> What does Top-P control?<br /><br /><b>A:</b> The size of the probability-based token candidate pool.</div>
+        <div class="flashcard"><b>Q:</b> What is Top-P also called?<br /><br /><b>A:</b> Nucleus sampling.</div>
+        <div class="flashcard"><b>Q:</b> Best mindset for production tasks?<br /><br /><b>A:</b> Lower randomness, clearer prompt, stronger grounding.</div>
+      </div>
+    </section>
+
+    <section class="section card linkedin">
+🔥 Day 5: Temperature & Top-P
+
+Every tea shop has had AI settings before AI became cool. ☕🤖
+
+You ask:
+“Bhaiya, one cutting chai.”
+
+Shopkeeper asks:
+“How creative should I make it?” 😅
+
+Low Temperature:
+Plain, safe, predictable chai.
+
+Medium Temperature:
+Perfect masala chai. Flavorful, but still useful.
+
+High Temperature:
+Chocolate-mint-elaichi mystery chai with one biscuit floating inside. 😂
+
+That is exactly how AI works.
+
+🌡️ Temperature = creativity spice level
+🧃 Top-P = how wide the choice basket is
+
+Low settings give safe answers.
+Medium settings give balanced answers.
+High settings give surprising answers.
+
+But here is the warning:
+If you ask for an RCA, SQL fix, or production issue analysis with high creativity, don’t be shocked if the AI starts writing poetry about your broken DAG. 💀
+
+The lesson:
+🎯 Better settings = better AI output.
+
+Prompting tells AI what you want.
+Temperature and Top-P decide how boldly it answers.
+
+#AI #PromptEngineering #GenAI #LLM #Temperature #TopP #MachineLearning #DataEngineering #AgenticAI #TechLearning
+    </section>
+
+    <section class="section card">
+      <h2>🔗 Website link line</h2>
+      <p>📘 Full Day 5 Temperature & Top-P notes + visual cheat sheet here: <b>[Your Website Link]</b></p>
+    </section>
+
+    <footer class="footer">💗 Learn with love · One concept a day · Day 5 complete</footer>
+  </main>
+</body>
+</html>

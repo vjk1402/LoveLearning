@@ -4,186 +4,452 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A Love Story of Learning · Vishal Jayakumar</title>
-  <meta name="description" content="A day-by-day love story of learning AI — every concept told like a little love note, with a simple real-world example." />
+  <meta name="description" content="A category-based public learning library for AI, SQL, Snowflake, and interview preparation." />
   <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128151;</text></svg>" />
 </head>
-<body>
-
-  <!-- ===== NAV ===== -->
+<body data-site="love-learning">
   <nav class="nav">
-    <div class="wrap">
-      <div class="brand">
-        <div class="logo">💗</div>
+    <div class="wrap nav-row">
+      <a class="brand brand-link" href="index.html" aria-label="A Love Story of Learning home">
+        <div class="logo">&#128151;</div>
         <span class="full">A Love Story of Learning</span>
+      </a>
+
+      <div class="category-menu">
+        <button class="category-toggle" id="categoryToggle" aria-expanded="false" aria-controls="categoryPanel">
+          <span>Learning Tracks</span>
+          <b class="chev">&#9662;</b>
+        </button>
+        <div class="category-panel" id="categoryPanel" hidden>
+          <a class="category-card active" href="index.html">
+            <span class="cat-icon">&#129302;</span>
+            <span class="cat-text"><strong>AI Journey</strong><small>90-day agentic AI roadmap</small></span>
+          </a>
+          <a class="category-card" href="sql.html">
+            <span class="cat-icon">&#129534;</span>
+            <span class="cat-text"><strong>SQL</strong><small>Queries, joins, windows and interviews</small></span>
+          </a>
+          <a class="category-card" href="snowflake.html">
+            <span class="cat-icon">&#10052;&#65039;</span>
+            <span class="cat-text"><strong>Snowflake</strong><small>Warehouse, stages, streams and tasks</small></span>
+          </a>
+          <a class="category-card" href="interview-prep.html">
+            <span class="cat-icon">&#127919;</span>
+            <span class="cat-text"><strong>Interview Prep</strong><small>Role-based revision and practice</small></span>
+          </a>
+        </div>
       </div>
-      <a class="btn" href="https://www.linkedin.com/in/vishaljk1402/" target="_blank" rel="noopener">Follow the story ↗</a>
+
+      <a class="btn" href="https://www.linkedin.com/in/vishaljk1402/" target="_blank" rel="noopener">Follow the story &#8599;</a>
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <button class="scroll-heart" id="scrollHeart" aria-label="Scroll down through the page">
+    <span class="sh-heart">&#10084;</span>
+    <small class="sh-chev">&#9662;</small>
+  </button>
+
   <header class="hero">
     <div class="wrap">
-      <span class="kicker">Dear diary…</span>
-      <h1>Falling in love with AI, <br/><span class="amp">one day</span> at a time</h1>
-      <p class="sub">A day-by-day love story of learning — every concept told like a little love note, always with a simple, real-world example. Open any note below to read that day's page.</p>
-      <div class="hearts">♡ ♥ ♡ ♥ ♡</div>
-
+      <span class="kicker">Dear diary&#8230;</span>
+      <h1>Falling in love with learning,<br/><span class="amp">one concept</span> at a time</h1>
+      <p class="sub">A public learning library for AI, future SQL notes, Snowflake notes, and interview preparation &#8212; built as story-first visual learning plus deep professor-grade revision pages.</p>
+      <div class="hearts">&#9825; &#9829; &#9825; &#9829; &#9825;</div>
       <div class="progress-card">
         <div class="progress-head">
-          <span class="ttl">Our story so far</span>
-          <span><b id="done">3</b> of <b id="total">30</b> love notes written</span>
+          <span class="ttl" id="activeTrackTitle">AI Learning Journey</span>
+          <span><b id="done">0</b> of <b id="total">90</b> notes live</span>
         </div>
-        <div class="bar"><span id="fill" style="width:10%"></span></div>
+        <div class="bar"><span id="fill" style="width:0%"></span></div>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-
-    <!-- ===== CHAPTER 1 ===== -->
-    <section class="phase" id="phase-1">
-      <div class="phase-head">
-        <div class="num">1</div>
-        <div>
-          <span class="chap">Chapter One</span>
-          <h2>The First Spark — AI &amp; LLM Foundations</h2>
-        </div>
-        <span class="tag">Notes 1–7</span>
-      </div>
-
-      <div class="grid">
-
-        <a class="card" href="days/day1.html">
-          <div class="day">Note 1</div>
-          <h3>What is an LLM?</h3>
-          <p>The super-smart autocomplete that read the whole library.</p>
-          <div class="foot"><span class="pill live">♥ Written</span><span class="arrow">→</span></div>
-        </a>
-
-        <a class="card" href="days/day2.html">
-          <div class="day">Note 2</div>
-          <h3>Tokens</h3>
-          <p>Little love-letters torn into puzzle pieces.</p>
-          <div class="foot"><span class="pill live">♥ Written</span><span class="arrow">→</span></div>
-        </a>
-
-        <a class="card" href="days/day3.html">
-          <div class="day">Note 3</div>
-          <h3>Context Window</h3>
-          <p>How much of our conversation it can hold in its heart.</p>
-          <div class="foot"><span class="pill live">♥ Written</span><span class="arrow">→</span></div>
-        </a>
-
-        <a class="card locked" href="#">
-          <div class="day">Note 4</div>
-          <h3>Prompt Engineering</h3>
-          <p>Learning to say exactly what you mean.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-
-        <a class="card locked" href="#">
-          <div class="day">Note 5</div>
-          <h3>Temperature</h3>
-          <p>The dial between calm and passionate.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-
-        <a class="card locked" href="#">
-          <div class="day">Note 6</div>
-          <h3>Hallucinations</h3>
-          <p>When love makes it imagine things.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-
-        <a class="card locked" href="#">
-          <div class="day">Note 7</div>
-          <h3>Embeddings</h3>
-          <p>Turning feelings into points on a map.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- ===== CHAPTER 2 ===== -->
-    <section class="phase" id="phase-2">
-      <div class="phase-head">
-        <div class="num">2</div>
-        <div>
-          <span class="chap">Chapter Two</span>
-          <h2>Getting to Know You — Retrieval &amp; RAG</h2>
-        </div>
-        <span class="tag">Notes 8–14</span>
-      </div>
-
-      <div class="grid">
-        <a class="card locked" href="#">
-          <div class="day">Note 8</div>
-          <h3>Vector Databases</h3>
-          <p>A library that remembers by feeling, not by name.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-        <a class="card locked" href="#">
-          <div class="day">Note 9</div>
-          <h3>What is RAG?</h3>
-          <p>Reading our old letters before replying.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-        <a class="card locked" href="#">
-          <div class="day">Note 10</div>
-          <h3>Chunking</h3>
-          <p>Small notes are easier to cherish than long ones.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ===== CHAPTER 3 ===== -->
-    <section class="phase" id="phase-3">
-      <div class="phase-head">
-        <div class="num">3</div>
-        <div>
-          <span class="chap">Chapter Three</span>
-          <h2>Growing Together — Agentic AI</h2>
-        </div>
-        <span class="tag">Notes 15–21</span>
-      </div>
-
-      <div class="grid">
-        <a class="card locked" href="#">
-          <div class="day">Note 15</div>
-          <h3>What is an AI Agent?</h3>
-          <p>A partner that can think, plan and act on its own.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-        <a class="card locked" href="#">
-          <div class="day">Note 16</div>
-          <h3>Tools &amp; Function Calling</h3>
-          <p>Giving love a helping pair of hands.</p>
-          <div class="foot"><span class="pill soon">Soon ♡</span></div>
-        </a>
-      </div>
-    </section>
-
+    <section class="track-intro" id="track-intro"></section>
+    <div id="track-content"></div>
   </main>
+
+  <!-- Easter-egg quote cloud -->
+  <div class="quote-cloud" id="quoteCloud" hidden>
+    <button class="quote-close" id="quoteClose" aria-label="Close quote">&#10005;</button>
+    <p class="quote-text" id="quoteText"></p>
+    <p class="quote-author" id="quoteAuthor"></p>
+  </div>
 
   <footer>
     <div class="wrap">
       Written with a full heart by<br/>
       <span class="sig">Vishal Jayakumar</span><br/>
-      Learning in public — one love note a day. 💗<br/><br/>
-      <a href="https://www.linkedin.com/in/vishaljk1402/" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      Learning in public &#8212; one love note a day. &#128151;<br/><br/>
+      <a href="https://www.linkedin.com/in/vishaljk1402/" target="_blank" rel="noopener">LinkedIn</a> &#183;
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a><br/><br/>
+      <small class="hint">Psst&#8230; tap the tiny hearts hidden around the page for a spark of motivation. &#128150;</small>
     </div>
   </footer>
 
   <script>
-    const published = document.querySelectorAll('.card:not(.locked)').length;
-    const total = 30;
-    document.getElementById('done').textContent = published;
-    document.getElementById('total').textContent = total;
-    document.getElementById('fill').style.width = Math.round(published/total*100) + '%';
+    const learningTrack = {
+      label: 'AI',
+      title: 'AI Learning Journey',
+      basePath: 'days',
+      publishedHint: 7,
+      subtitle: 'A 90-day journey from LLM foundations to a neutral Incident Intelligence Assistant that analyzes issues, drafts RCAs, suggests next actions, and updates operational documentation.',
+      chapters: [
+          {
+            number: 1,
+            chapter: 'Chapter One',
+            title: 'AI & LLM Foundations',
+            tag: 'Days 1-10',
+            notes: [
+              { day: 1, title: 'What is an LLM?', desc: 'Understand the basic idea behind Large Language Models.' },
+              { day: 2, title: 'Tokens', desc: 'The tiny text pieces AI reads and writes.' },
+              { day: 3, title: 'Context Window', desc: 'How much conversation AI can hold at once.' },
+              { day: 4, title: 'Prompt Engineering', desc: 'Learning to ask AI in a clear, useful way.' },
+              { day: 5, title: 'Temperature and Top-P', desc: 'The creativity controls behind safer or wilder answers.' },
+              { day: 6, title: 'Hallucination', desc: 'When AI sounds confident but is wrong or invented.' },
+              { day: 7, title: 'System Prompt vs User Prompt', desc: 'Hidden behavior rules versus the visible request you type.' },
+              { day: 8, title: 'Few-Shot Prompting', desc: 'Teaching AI with examples instead of only instructions.' },
+              { day: 9, title: 'Chain-of-Thought Concept', desc: 'Why step-by-step reasoning can improve complex answers.' },
+              { day: 10, title: 'LLM Limitations', desc: 'Where language models are powerful, and where they still fail.' }
+            ]
+          },
+          {
+            number: 2,
+            chapter: 'Chapter Two',
+            title: 'Embeddings & Search',
+            tag: 'Days 11-20',
+            notes: [
+              { day: 11, title: 'What are Embeddings?', desc: 'Turning meaning into numbers that machines can compare.' },
+              { day: 12, title: 'Semantic Search', desc: 'Finding meaning, not just matching exact words.' },
+              { day: 13, title: 'Keyword Search vs Vector Search', desc: 'Exact words versus meaning-based search.' },
+              { day: 14, title: 'Cosine Similarity', desc: 'Measuring how close two meanings are.' },
+              { day: 15, title: 'Vector Database', desc: 'A memory store built for similarity search.' },
+              { day: 16, title: 'Chunking', desc: 'Breaking knowledge into searchable pieces.' },
+              { day: 17, title: 'Chunk Size and Overlap', desc: 'Balancing context, precision, and retrieval quality.' },
+              { day: 18, title: 'Metadata Filtering', desc: 'Using labels to narrow what AI retrieves.' },
+              { day: 19, title: 'Hybrid Search', desc: 'Combining keyword search and vector search.' },
+              { day: 20, title: 'Reranking', desc: 'Reordering retrieved results so the best evidence comes first.' }
+            ]
+          },
+          {
+            number: 3,
+            chapter: 'Chapter Three',
+            title: 'RAG Foundations',
+            tag: 'Days 21-35',
+            notes: [
+              { day: 21, title: 'What is RAG?', desc: 'AI that retrieves relevant knowledge before answering.' },
+              { day: 22, title: 'Why RAG Beats Plain LLMs', desc: 'Grounding answers in fresh, specific sources.' },
+              { day: 23, title: 'RAG Architecture', desc: 'The moving parts behind retrieval-augmented generation.' },
+              { day: 24, title: 'Indexing Pipeline', desc: 'Preparing documents so AI can search them later.' },
+              { day: 25, title: 'Retrieval Pipeline', desc: 'Finding the right knowledge at question time.' },
+              { day: 26, title: 'Top-K Retrieval', desc: 'Choosing how many search results to send to the model.' },
+              { day: 27, title: 'Prompt Augmentation', desc: 'Adding retrieved context into the final prompt.' },
+              { day: 28, title: 'Grounded Generation', desc: 'Answering from evidence instead of guessing.' },
+              { day: 29, title: 'Source Citation', desc: 'Showing where the answer came from.' },
+              { day: 30, title: 'RAG Hallucination Control', desc: 'Reducing unsupported answers with retrieval and rules.' },
+              { day: 31, title: 'RAG Evaluation', desc: 'Testing if retrieval and answers are good enough.' },
+              { day: 32, title: 'Precision and Recall', desc: 'Measuring search quality from two directions.' },
+              { day: 33, title: 'Answer Relevance', desc: 'Checking if the answer actually addresses the question.' },
+              { day: 34, title: 'Faithfulness', desc: 'Checking if the answer stays true to the source.' },
+              { day: 35, title: 'RAG Failure Modes', desc: 'Where RAG systems break and how to diagnose them.' }
+            ]
+          },
+          {
+            number: 4,
+            chapter: 'Chapter Four',
+            title: 'Incident Intelligence Assistant',
+            tag: 'Days 36-50',
+            notes: [
+              { day: 36, title: 'Incident Intelligence Assistant', desc: 'A neutral AI assistant for issue analysis and operational guidance.' },
+              { day: 37, title: 'Incident Logs', desc: 'The raw evidence behind failures and recoveries.' },
+              { day: 38, title: 'Runbooks and SOPs', desc: 'Operational documentation that explains what to do next.' },
+              { day: 39, title: 'Alert Payloads', desc: 'The structured signal that tells teams what broke.' },
+              { day: 40, title: 'RCA Drafting', desc: 'Turning incident evidence into a clear root-cause draft.' },
+              { day: 41, title: 'Symptom vs Root Cause', desc: 'Separating what is visible from what actually caused it.' },
+              { day: 42, title: 'Incident Timeline Extraction', desc: 'Reconstructing what happened, when, and in what order.' },
+              { day: 43, title: 'Similar Incident Search', desc: 'Finding past incidents that resemble the current issue.' },
+              { day: 44, title: 'Suggested Fixes', desc: 'Recommending next actions based on evidence and history.' },
+              { day: 45, title: 'Confidence Score', desc: 'Showing how much trust to place in an AI suggestion.' },
+              { day: 46, title: 'Human-in-the-Loop Review', desc: 'Keeping humans responsible for important decisions.' },
+              { day: 47, title: 'Escalation Logic', desc: 'Knowing when to hand off to another person, team, or process.' },
+              { day: 48, title: 'Ticketing System Integration', desc: 'Connecting incident intelligence to ticket workflows.' },
+              { day: 49, title: 'Monitoring Tool Integration', desc: 'Using monitoring signals inside an incident workflow.' },
+              { day: 50, title: 'Post-Incident Documentation Loop', desc: 'Creating or updating knowledge after every resolved incident.' }
+            ]
+          },
+          {
+            number: 5,
+            chapter: 'Chapter Five',
+            title: 'Agentic AI',
+            tag: 'Days 51-65',
+            notes: [
+              { day: 51, title: 'What is an AI Agent?', desc: 'An AI system that can reason, plan, and act with tools.' },
+              { day: 52, title: 'Agent vs Chatbot', desc: 'The difference between answering and taking action.' },
+              { day: 53, title: 'Tool Calling', desc: 'Letting AI use external tools to complete tasks.' },
+              { day: 54, title: 'Function Calling', desc: 'A structured way for AI to trigger application functions.' },
+              { day: 55, title: 'Planning', desc: 'Breaking a goal into smaller steps before acting.' },
+              { day: 56, title: 'Memory', desc: 'How agents keep useful context across steps or sessions.' },
+              { day: 57, title: 'Short-Term vs Long-Term Memory', desc: 'Temporary task context versus reusable learned context.' },
+              { day: 58, title: 'Agent Workflow', desc: 'The full loop of observe, think, act, and review.' },
+              { day: 59, title: 'ReAct Pattern', desc: 'Reasoning and acting together in an agent loop.' },
+              { day: 60, title: 'LangGraph', desc: 'Building controlled multi-step agent workflows.' },
+              { day: 61, title: 'Multi-Step Reasoning', desc: 'Solving tasks that need more than one inference step.' },
+              { day: 62, title: 'Guardrails', desc: 'Rules and checks that keep agents safe and reliable.' },
+              { day: 63, title: 'Agent Observability', desc: 'Monitoring agent steps, actions, tools, and failures.' },
+              { day: 64, title: 'Agent Evaluation', desc: 'Testing whether an agent is useful, safe, and correct.' },
+              { day: 65, title: 'When Not to Use Agents', desc: 'Knowing when a simpler workflow is better.' }
+            ]
+          },
+          {
+            number: 6,
+            chapter: 'Chapter Six',
+            title: 'Backend & Architecture',
+            tag: 'Days 66-75',
+            notes: [
+              { day: 66, title: 'FastAPI', desc: 'A practical Python framework for building AI APIs.' },
+              { day: 67, title: 'API Design', desc: 'Designing clean interfaces for AI-backed applications.' },
+              { day: 68, title: 'Background Jobs', desc: 'Running long tasks without blocking the user.' },
+              { day: 69, title: 'Docker', desc: 'Packaging applications so they run consistently anywhere.' },
+              { day: 70, title: 'Environment Variables', desc: 'Managing configuration without hardcoding secrets.' },
+              { day: 71, title: 'PostgreSQL', desc: 'A reliable relational database for application data.' },
+              { day: 72, title: 'pgvector', desc: 'Storing and searching embeddings inside PostgreSQL.' },
+              { day: 73, title: 'Redis Cache', desc: 'Speeding up repeated lookups and temporary state.' },
+              { day: 74, title: 'Authentication Basics', desc: 'Knowing who is using an application.' },
+              { day: 75, title: 'Rate Limiting', desc: 'Protecting APIs from overload and misuse.' }
+            ]
+          },
+          {
+            number: 7,
+            chapter: 'Chapter Seven',
+            title: 'Cloud Deployment',
+            tag: 'Days 76-83',
+            notes: [
+              { day: 76, title: 'AWS ECS Fargate', desc: 'Running containers without managing servers.' },
+              { day: 77, title: 'AWS ECR', desc: 'Storing container images for deployment.' },
+              { day: 78, title: 'Load Balancer', desc: 'Routing traffic safely to a running application.' },
+              { day: 79, title: 'AWS RDS PostgreSQL', desc: 'Managed PostgreSQL for production applications.' },
+              { day: 80, title: 'Secrets Manager', desc: 'Storing credentials safely outside code.' },
+              { day: 81, title: 'CloudWatch Logs', desc: 'Capturing application logs in AWS.' },
+              { day: 82, title: 'CI/CD Basics', desc: 'Deploying changes through a repeatable pipeline.' },
+              { day: 83, title: 'Production Deployment Checklist', desc: 'The final safety checks before going live.' }
+            ]
+          },
+          {
+            number: 8,
+            chapter: 'Chapter Eight',
+            title: 'Monitoring & Security',
+            tag: 'Days 84-90',
+            notes: [
+              { day: 84, title: 'LangSmith Monitoring', desc: 'Tracing and debugging LLM application behavior.' },
+              { day: 85, title: 'Datadog Monitoring', desc: 'Observing services, metrics, logs, and incidents.' },
+              { day: 86, title: 'Cost Tracking', desc: 'Measuring and controlling AI and cloud spend.' },
+              { day: 87, title: 'Prompt Injection', desc: 'When user input tries to override hidden instructions.' },
+              { day: 88, title: 'Data Privacy', desc: 'Protecting sensitive data in AI systems.' },
+              { day: 89, title: 'Final Incident Intelligence Assistant Architecture', desc: 'Putting the full assistant architecture together.' },
+              { day: 90, title: 'Complete Incident Intelligence Assistant Recap', desc: 'A full recap of what was learned and built.' }
+            ]
+          }
+      ]
+    };
+
+    const state = { live: new Map() };
+    const trackIntro = document.getElementById('track-intro');
+    const trackContent = document.getElementById('track-content');
+    const doneEl = document.getElementById('done');
+    const totalEl = document.getElementById('total');
+    const fillEl = document.getElementById('fill');
+    const activeTrackTitle = document.getElementById('activeTrackTitle');
+
+    function noteHref(note) { return learningTrack.basePath + '/day' + note.day + '.html'; }
+    function liveKey(day) { return 'ai-' + day; }
+    function isLive(note) { return note.day <= learningTrack.publishedHint || state.live.get(liveKey(note.day)) === true; }
+
+    async function pageExists(url) {
+      try {
+        const head = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        if (head.ok) return true;
+        if (head.status !== 405) return false;
+        const get = await fetch(url, { method: 'GET', cache: 'no-store' });
+        return get.ok;
+      } catch (e) { return false; }
+    }
+
+    function renderTrack() {
+      const allNotes = learningTrack.chapters.flatMap(c => c.notes);
+      const liveCount = allNotes.filter(isLive).length;
+      activeTrackTitle.textContent = learningTrack.title;
+      doneEl.textContent = liveCount;
+      totalEl.textContent = allNotes.length;
+      fillEl.style.width = allNotes.length ? Math.round((liveCount / allNotes.length) * 100) + '%' : '0%';
+
+      trackIntro.innerHTML =
+        '<div class="track-card track-ai">' +
+          '<span class="track-kicker">' + learningTrack.label + '</span>' +
+          '<h2>' + learningTrack.title + '</h2>' +
+          '<p>' + learningTrack.subtitle + '</p>' +
+        '</div>';
+
+      trackContent.innerHTML = learningTrack.chapters.map(chapter => {
+        const cards = chapter.notes.map(renderCard).join('');
+        return '' +
+          '<section class="phase track-section" id="chapter-' + chapter.number + '">' +
+            '<div class="phase-head">' +
+              '<div class="num">' + chapter.number + '</div>' +
+              '<div><span class="chap">' + chapter.chapter + '</span><h2>' + chapter.title + '</h2></div>' +
+              '<span class="tag">' + chapter.tag + '</span>' +
+            '</div>' +
+            '<div class="grid">' + cards + '</div>' +
+          '</section>';
+      }).join('');
+
+      scatterEggHearts();
+    }
+
+    function renderCard(note) {
+      const href = noteHref(note);
+      const live = isLive(note);
+      const cardClass = live ? 'card note-card' : 'card note-card locked';
+      const status = live
+        ? '<span class="pill live">&#9829; Written</span><span class="arrow">&#8594;</span>'
+        : '<span class="pill soon">Soon &#9825;</span>';
+      return '' +
+        '<a class="' + cardClass + '" href="' + (live ? href : '#') + '" data-track="ai" data-day="' + note.day + '" data-topic="' + note.title + '">' +
+          '<div class="day">Note ' + note.day + '</div>' +
+          '<h3>' + note.title + '</h3>' +
+          '<p>' + note.desc + '</p>' +
+          '<div class="foot">' + status + '</div>' +
+        '</a>';
+    }
+
+    async function refreshLiveStatus() {
+      const checks = learningTrack.chapters.flatMap(c => c.notes).map(async note => {
+        if (note.day <= learningTrack.publishedHint) { state.live.set(liveKey(note.day), true); return; }
+        state.live.set(liveKey(note.day), await pageExists(noteHref(note)));
+      });
+      await Promise.all(checks);
+      renderTrack();
+    }
+
+    /* ---------- Collapsible Learning Tracks (FIXED) ---------- */
+    const categoryToggle = document.getElementById('categoryToggle');
+    const categoryPanel = document.getElementById('categoryPanel');
+
+    function closeCategory() {
+      categoryToggle.setAttribute('aria-expanded', 'false');
+      categoryPanel.hidden = true;
+    }
+    function toggleCategory(e) {
+      e.stopPropagation();               // stop the document listener from firing on the same click
+      const open = categoryToggle.getAttribute('aria-expanded') === 'true';
+      categoryToggle.setAttribute('aria-expanded', String(!open));
+      categoryPanel.hidden = open;       // if it was open -> hide, else show
+    }
+    categoryToggle.addEventListener('click', toggleCategory);
+    categoryPanel.addEventListener('click', e => e.stopPropagation()); // clicks inside stay open
+    document.addEventListener('click', closeCategory);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCategory(); });
+
+    /* ---------- Smart scroll heart (FIXED: steps to page end, then loops top) ---------- */
+    const scrollHeart = document.getElementById('scrollHeart');
+    scrollHeart.addEventListener('click', () => {
+      const doc = document.documentElement;
+      const nearBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 40;
+      if (nearBottom) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });     // loop back to top
+      } else {
+        window.scrollBy({ top: Math.round(window.innerHeight * 0.9), behavior: 'smooth' });
+      }
+    });
+    // flip the chevron to an up-arrow feel when user reaches the bottom
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const nearBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 40;
+      scrollHeart.classList.toggle('at-bottom', nearBottom);
+    });
+
+    /* ---------- Easter-egg motivational quotes ---------- */
+    const quotes = [
+      ["The beautiful thing about learning is that no one can take it away from you.", "B.B. King"],
+      ["Live as if you were to die tomorrow. Learn as if you were to live forever.", "Mahatma Gandhi"],
+      ["It always seems impossible until it is done.", "Nelson Mandela"],
+      ["I have not failed. I have just found 10,000 ways that won't work.", "Thomas Edison"],
+      ["The expert in anything was once a beginner.", "Helen Hayes"],
+      ["Success is the sum of small efforts repeated day in and day out.", "Robert Collier"],
+      ["An investment in knowledge pays the best interest.", "Benjamin Franklin"],
+      ["Continuous improvement is better than delayed perfection.", "Mark Twain"],
+      ["Genius is one percent inspiration and ninety-nine percent perspiration.", "Thomas Edison"],
+      ["Develop a passion for learning. If you do, you will never cease to grow.", "Anthony J. D'Angelo"],
+      ["The more that you read, the more things you will know.", "Dr. Seuss"],
+      ["Discipline is the bridge between goals and accomplishment.", "Jim Rohn"],
+      ["Learning never exhausts the mind.", "Leonardo da Vinci"],
+      ["Small daily improvements over time lead to stunning results.", "Robin Sharma"],
+      ["The only way to do great work is to love what you do.", "Steve Jobs"],
+      ["Consistency is what transforms average into excellence.", "Anonymous"],
+      ["Study hard what interests you the most in the most undisciplined, irreverent and original manner possible.", "Richard Feynman"],
+      ["What we know is a drop, what we don't know is an ocean.", "Isaac Newton"]
+    ];
+
+    const quoteCloud = document.getElementById('quoteCloud');
+    const quoteText = document.getElementById('quoteText');
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    const quoteClose = document.getElementById('quoteClose');
+
+    function showQuote(x, y) {
+      const [text, author] = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteText.textContent = '“' + text + '”';
+      quoteAuthor.textContent = '— ' + author;
+      quoteCloud.hidden = false;
+      quoteCloud.style.opacity = '0';
+      const cw = 320, ch = 160;
+      let left = Math.min(Math.max(x - cw / 2, 14), window.innerWidth - cw - 14);
+      let top = Math.min(Math.max(y + 18, 80), window.innerHeight - ch - 20);
+      quoteCloud.style.left = left + 'px';
+      quoteCloud.style.top = top + 'px';
+      requestAnimationFrame(() => {
+        quoteCloud.style.opacity = '1';
+        quoteCloud.classList.add('pop');
+      });
+    }
+    function hideQuote() {
+      quoteCloud.classList.remove('pop');
+      quoteCloud.hidden = true;
+    }
+    quoteClose.addEventListener('click', hideQuote);
+    document.addEventListener('click', e => {
+      if (!quoteCloud.hidden && !e.target.closest('.quote-cloud') && !e.target.closest('.egg-heart')) hideQuote();
+    });
+
+    function scatterEggHearts() {
+      document.querySelectorAll('.egg-heart').forEach(h => h.remove());
+      const anchors = [
+        { top: '210px', left: '6%' },
+        { top: '620px', right: '9%' },
+        { top: '1150px', left: '4%' },
+        { top: '1750px', right: '6%' },
+        { top: '2400px', left: '8%' },
+        { top: '3050px', right: '10%' }
+      ];
+      anchors.forEach((pos, i) => {
+        const b = document.createElement('button');
+        b.className = 'egg-heart';
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Reveal a motivational quote');
+        b.textContent = '♥';
+        b.style.top = pos.top;
+        if (pos.left) b.style.left = pos.left; else b.style.right = pos.right;
+        b.style.animationDelay = (i * 0.4) + 's';
+        b.addEventListener('click', ev => {
+          ev.stopPropagation();
+          showQuote(ev.clientX, ev.clientY);
+        });
+        document.body.appendChild(b);
+      });
+    }
+
+    renderTrack();
+    refreshLiveStatus();
   </script>
 </body>
 </html>
