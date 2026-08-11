@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 8 · Few-Shot Prompting | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 8 — Few-Shot Prompting, the professor's full reference notes for exam prep." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 8</div>
+      <span class="daytag">Love Note 8</span>
+      <h1>Few-Shot Prompting</h1>
+      <p class="lead">The professor's full reference notes — everything I'd want you to know before the exam.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p><b>Few-shot prompting</b> is when you give the AI a handful of <b>worked examples</b> — a few
+         input→output pairs — right inside the prompt, so it can copy the <b>pattern, format, and tone</b>
+         you want before it tackles the real task. Instead of only <i>telling</i> the model what to do, you
+         <i>show</i> it what "good" looks like.</p>
+      <p>Here is the mindset shift: <b>a language model is a pattern-completer.</b> An instruction says
+         <i>what</i> to do; examples show <i>exactly how</i>. This is called <b>in-context learning</b> — the
+         model picks up the pattern from your examples on the spot, <i>without any retraining or weight
+         changes</i>. When it's done, the examples are forgotten; they only shaped this one answer.</p>
+    </div>
+    <!-- 2. A DIFFERENT LAYMAN ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: teaching a card game by playing it</h2>
+      <p>Imagine teaching a friend a new card game. You could read every rule aloud — dry, confusing, easy
+         to forget. Or you could just <b>deal two or three practice hands</b> and let them watch how it
+         flows. Within minutes they've caught the rhythm: what beats what, when to play, how a turn ends.
+         They learned the <i>pattern</i> by seeing it, not by being lectured.</p>
+      <p>Few-shot prompting is those practice hands. Two or three clean examples teach the model the
+         "shape" of the task — the structure, the vocabulary, the vibe — far faster than a paragraph of
+         instructions ever could. <b>Show, don't just tell.</b></p>
+      <p><b>The lesson:</b> examples are a language of their own. A few good ones often steer a model better
+         than a page of careful wording.</p>
+    </div>
+    <!-- 3. WHY IT WORKS -->
+    <div class="panel">
+      <h2><span class="ic">⚙️</span> Why few-shot works (the mechanism)</h2>
+      <ol>
+        <li><b>Models complete patterns.</b> An LLM's whole job is "what likely comes next" — so if the
+            prompt already shows a repeating pattern, it will faithfully continue it.</li>
+        <li><b>Examples pin down format.</b> One instruction can be read ten ways; an example nails the
+            exact output shape — JSON keys, labels, length, punctuation, tone.</li>
+        <li><b>In-context learning.</b> The model adapts to your task <i>at inference time</i>, using only
+            what's in the prompt — no fine-tuning, no new training data.</li>
+        <li><b>They resolve ambiguity.</b> Fuzzy or subjective tasks ("classify the sentiment," "match our
+            brand voice") become concrete once the model can see what you mean.</li>
+        <li><b>They anchor the scope.</b> Examples quietly tell the model how much to say and where to
+            stop, reducing rambling and drift.</li>
+      </ol>
+    </div>
+    <!-- 4. TYPES -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> The spectrum: zero, one, and few-shot</h2>
+      <table>
+        <thead><tr><th>Style</th><th>What it looks like</th></tr></thead>
+        <tbody>
+          <tr><td>Zero-shot</td><td>Just an instruction, no examples — "Classify this review as positive or negative."</td></tr>
+          <tr><td>One-shot</td><td>The instruction plus a single example to lock the format.</td></tr>
+          <tr><td>Few-shot</td><td>The instruction plus 2–5+ examples showing the pattern and edge cases.</td></tr>
+          <tr><td>Many-shot</td><td>Lots of examples for tricky tasks — powerful, but costs tokens and can dilute focus.</td></tr>
+        </tbody>
+      </table>
+      <p>The rule of thumb: <b>start zero-shot, add examples only when results drift.</b> Each example
+         costs tokens (and money), so reach for the fewest that make the output reliable.</p>
+    </div>
+    <!-- 5. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why it matters (and where it shines)</h2>
+      <ul>
+        <li><b>Consistent formatting.</b> Force clean JSON, fixed labels, or a strict template every time —
+            essential for anything a program will read next.</li>
+        <li><b>Brand &amp; tone matching.</b> A few sample replies teach the model your exact voice better
+            than "be friendly and professional."</li>
+        <li><b>Nuanced classification.</b> Subjective categories (urgent vs. not, on-topic vs. off) get far
+            more accurate when the model can see your judgement calls.</li>
+        <li><b>Cheaper than fine-tuning.</b> You get task-specific behaviour instantly, with no training run
+            and no dataset to curate.</li>
+        <li><b>It's the everyday power-tool</b> — the fastest way to turn a vague answer into a reliable,
+            repeatable one.</li>
+      </ul>
+    </div>
+    <!-- 6. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: taming the ticket triage</h2>
+      <p>A support team asks an AI to label incoming tickets. Zero-shot — <i>"Tag each ticket as Billing,
+         Bug, or Feature-Request"</i> — the model half-guesses, invents new tags, and phrases them
+         differently each time. Useless for a dashboard.</p>
+      <p>So they add <b>three labelled examples</b> in the exact output format: a billing message → <code>Billing</code>,
+         a crash report → <code>Bug</code>, a "please add dark mode" → <code>Feature-Request</code>. Now every
+         answer snaps to one of the three allowed tags, spelled identically, every single time. <b>Same
+         model, same task — the examples turned chaos into a clean, machine-readable pipeline.</b></p>
+    </div>
+    <!-- 7. HOW TO DO IT WELL -->
+    <div class="panel callout">
+      <h2><span class="ic">🛡️</span> How to do few-shot well (practical toolkit)</h2>
+      <ul>
+        <li><b>Keep examples consistent.</b> Same structure, same delimiters, same style across all of them
+            — the pattern must be obvious.</li>
+        <li><b>Match the real format.</b> Write your examples in the exact shape you want the answer back
+            in (labels, JSON, length).</li>
+        <li><b>Cover the edge cases.</b> Include a tricky or borderline example so the model learns the hard
+            calls, not just the easy ones.</li>
+        <li><b>Make sure examples are correct.</b> A wrong example teaches a wrong pattern — the model will
+            copy your mistake faithfully.</li>
+        <li><b>Balance your labels.</b> For classification, show each category — skewed examples create
+            skewed answers.</li>
+        <li><b>Fewest that work.</b> Start with 2–3, add more only if needed; extra examples cost tokens and
+            can blur the focus.</li>
+      </ul>
+    </div>
+    <!-- 8. PITFALLS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"More examples always help."</b> No — past a point they waste tokens and can dilute the
+            pattern.</li>
+        <li><b>"Few-shot trains the model."</b> No — nothing is saved; it only shapes the current prompt
+            (in-context learning).</li>
+        <li><b>"Examples can be sloppy."</b> No — the model copies exactly what you show, flaws included.</li>
+        <li><b>"It removes hallucination."</b> No — it improves format and consistency, but the model can
+            still invent content (Note 6).</li>
+        <li><b>"Order doesn't matter."</b> It can — models often lean on the most recent examples, so
+            arrangement can nudge results.</li>
+      </ul>
+    </div>
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>What is few-shot prompting?</b><br/>Giving the model a few worked examples in the prompt so
+            it copies the pattern, format, and tone.</li>
+        <li><b>Why does it work?</b><br/>LLMs complete patterns; examples show exactly what "good" looks
+            like — this is in-context learning.</li>
+        <li><b>Does it retrain the model?</b><br/>No — it only shapes the current answer; nothing is saved.</li>
+        <li><b>Zero vs. one vs. few-shot?</b><br/>Zero = no examples, one = a single example, few = 2–5+
+            examples.</li>
+        <li><b>Name two best practices.</b><br/>Keep examples consistent and correct, and match the exact
+            output format you want.</li>
+        <li><b>Does it stop hallucination?</b><br/>No — it improves consistency, but the model can still
+            fabricate content.</li>
+      </ol>
+    </div>
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Few-shot prompting</b> — steering a model with a few in-prompt examples.</li>
+        <li><b>Zero-shot</b> — instruction only, no examples.</li>
+        <li><b>In-context learning</b> — adapting to a task from the prompt alone, no retraining.</li>
+        <li><b>Shot</b> — a single worked example inside the prompt.</li>
+        <li><b>Fine-tuning</b> — the heavier alternative: actually retraining the model on data (a later note).</li>
+        <li><b>Prompt template</b> — a reusable structure that holds your examples and the new input.</li>
+      </ul>
+    </div>
+    <!-- 11. RAPID REVISION FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>Showing the AI a few examples in the prompt so it copies the pattern.</td></tr>
+          <tr><td>The mental model</td><td>Teaching a card game by dealing a few practice hands — show, don't just tell.</td></tr>
+          <tr><td>Why it works</td><td>Models complete patterns; examples pin down format, tone, and scope.</td></tr>
+          <tr><td>The mechanism</td><td>In-context learning — adapts at inference time, no retraining.</td></tr>
+          <tr><td>The spectrum</td><td>Zero-shot · One-shot · Few-shot · Many-shot.</td></tr>
+          <tr><td>Top practices</td><td>Consistent format · correct examples · cover edge cases · fewest that work.</td></tr>
+          <tr><td>Biggest win</td><td>Reliable, machine-readable, on-brand outputs — every time.</td></tr>
+          <tr><td>Not training</td><td>Nothing is saved; it only shapes the current prompt.</td></tr>
+          <tr><td>Golden rule</td><td>Start zero-shot; add examples only when results drift.</td></tr>
+          <tr><td>Watch out</td><td>Wrong or skewed examples teach wrong or skewed answers.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 8.</p>
+      <img class="cheat-img" src="../assets/day8.png" alt="Note 8 cheat sheet — Few-Shot Prompting" />
+    </div>
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>If a few examples teach the model <i>what</i> to produce, the next step is teaching it <i>how to
+         think</i>. Note 9 — <b>Chain-of-Thought</b> — is where we ask the model to reason step by step, so
+         it solves harder problems out loud instead of guessing in one breath. 💕</p>
+      <div class="tags"><span>#FewShot</span><span>#PromptEngineering</span><span>#Note8</span><span>#LearnInLove</span></div>
+    </div>
+    <div class="pager">
+      <a class="prev" href="day7.html"><small>Previous · Note 7</small>← Embeddings</a>
+      <a class="next" href="day9.html"><small>Next · Note 9</small>Chain-of-Thought →</a>
+    </div>
+  </main>
+  <footer><div class="wrap">Love Note 8 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
