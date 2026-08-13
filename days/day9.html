@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 9 · Chain-of-Thought | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 9 — Chain-of-Thought, the professor's full reference notes for exam prep." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter One · The First Spark / Note 9</div>
+      <span class="daytag">Love Note 9</span>
+      <h1>Chain-of-Thought</h1>
+      <p class="lead">The professor's full reference notes — everything I'd want you to know before the exam.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p><b>Chain-of-Thought (CoT)</b> prompting is asking the model to <b>reason step by step</b> — to
+         "think out loud" and show its working — <i>before</i> giving the final answer. Instead of leaping
+         straight to a conclusion, it lays out the intermediate steps, the same way you'd work out a dinner
+         bill on a napkin rather than blurting a number.</p>
+      <p>Here is the mindset shift: <b>a language model generates one token at a time, and each token it
+         writes becomes context for the next.</b> So when it writes out the reasoning, those written steps
+         actually <i>help it compute</i> the answer — thinking on paper, not just in its head. The magic
+         phrase is often as simple as <i>"Let's think step by step."</i></p>
+    </div>
+    <!-- 2. A DIFFERENT LAYMAN ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: splitting the dinner bill</h2>
+      <p>You're at dinner with friends and someone asks, <i>"How much does each of us pay?"</i> Answer in
+         one breath and it's easy to slip — <i>"₹2,400 split four ways… ₹600 each!"</i> — and quietly forget
+         the tip. But work it on a napkin and it's foolproof: <i>bill ₹2,400, add 10% tip → ₹2,640, divide
+         by 4 → <b>₹660 each.</b></i> Same maths, same brain — but <b>writing the steps caught the mistake
+         the quick guess missed.</b></p>
+      <p>Chain-of-Thought is that napkin for an AI. Force it to answer in one breath and it guesses. Let it
+         lay out the steps and it carries information forward, catches its own slips, and lands the right
+         result far more reliably.</p>
+      <p><b>The lesson:</b> reasoning is a process, not a reflex. Give the model room to work, and it works
+         better.</p>
+    </div>
+    <!-- 3. WHY IT WORKS -->
+    <div class="panel">
+      <h2><span class="ic">⚙️</span> Why chain-of-thought works (the mechanism)</h2>
+      <ol>
+        <li><b>Tokens become working memory.</b> Each reasoning step the model writes is fed back in as
+            context, so it literally "remembers" its own steps while solving.</li>
+        <li><b>It breaks big problems into small ones.</b> Multi-step questions become a sequence of easy
+            sub-steps, each far more likely to be correct.</li>
+        <li><b>More compute per answer.</b> Generating more tokens means more processing before committing
+            — the model effectively "thinks longer" on hard problems.</li>
+        <li><b>Errors become visible.</b> When the logic is on the page, a wrong step is easy to spot and
+            correct — for you <i>and</i> for the model.</li>
+        <li><b>It mirrors training data.</b> Worked solutions appear all over the internet, so "show your
+            steps" nudges the model into a pattern it has seen done well many times.</li>
+      </ol>
+    </div>
+    <!-- 4. TYPES -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> Flavours of chain-of-thought</h2>
+      <table>
+        <thead><tr><th>Style</th><th>What it looks like</th></tr></thead>
+        <tbody>
+          <tr><td>Zero-shot CoT</td><td>Just add "Let's think step by step" — no examples needed.</td></tr>
+          <tr><td>Few-shot CoT</td><td>Show a couple of examples that <i>include</i> the reasoning, then ask the real question.</td></tr>
+          <tr><td>Self-consistency</td><td>Generate several reasoning paths and take the most common answer — a vote.</td></tr>
+          <tr><td>Least-to-most</td><td>Break a hard problem into ordered sub-problems and solve them in sequence.</td></tr>
+        </tbody>
+      </table>
+      <p>The everyday hero is <b>zero-shot CoT</b> — five extra words that noticeably lift accuracy on maths,
+         logic, and multi-step reasoning tasks.</p>
+    </div>
+    <!-- 5. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why it matters (and where it shines)</h2>
+      <ul>
+        <li><b>Maths &amp; logic.</b> Word problems, calculations, and puzzles where one skipped step
+            wrecks the answer.</li>
+        <li><b>Multi-step decisions.</b> "Given these constraints, what should we do?" — reasoning makes
+            the trade-offs explicit.</li>
+        <li><b>Transparency &amp; trust.</b> You can <i>see</i> how the model reached its answer, so you can
+            check the logic, not just the conclusion.</li>
+        <li><b>Debugging prompts.</b> When an answer is wrong, the visible steps show you exactly where the
+            reasoning broke.</li>
+        <li><b>It powers "reasoning models."</b> The step-by-step idea is the seed behind today's advanced
+            reasoning systems.</li>
+      </ul>
+    </div>
+    <!-- 6. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: the capacity planning question</h2>
+      <p>An SRE asks: <i>"Each server handles 4,000 requests/min. We expect 26,000 requests/min at peak and
+         want one server spare for safety. How many servers?"</i> Answered in one breath, the model blurts
+         <b>"6 servers"</b> — close, but wrong.</p>
+      <p>Add <i>"Think step by step"</i> and it reasons: <i>26,000 ÷ 4,000 = 6.5 → round up to 7 servers to
+         cover peak → add 1 spare → <b>8 servers.</b></i> The steps caught the rounding <i>and</i> the spare
+         the quick answer skipped. <b>Same model, same question — the visible reasoning turned a confident
+         miss into a correct, checkable answer.</b></p>
+    </div>
+    <!-- 7. HOW TO DO IT WELL -->
+    <div class="panel callout">
+      <h2><span class="ic">🛡️</span> How to use chain-of-thought well (practical toolkit)</h2>
+      <ul>
+        <li><b>Ask for it explicitly.</b> "Let's think step by step" or "Show your reasoning before the
+            final answer" is often all it takes.</li>
+        <li><b>Separate reasoning from the answer.</b> Ask for the steps first, then a clearly labelled
+            "Final answer:" so it's easy to read.</li>
+        <li><b>Use it for the right tasks.</b> Reasoning, maths, and logic benefit most; simple lookups or
+            lists don't need it.</li>
+        <li><b>Combine with few-shot.</b> Show examples that <i>include</i> the working for the biggest
+            accuracy boost on hard problems.</li>
+        <li><b>Vote for reliability.</b> For critical answers, run it a few times (self-consistency) and
+            take the majority result.</li>
+        <li><b>Verify the steps, not just the answer.</b> Plausible reasoning can still contain a wrong
+            line — read the logic.</li>
+      </ul>
+    </div>
+    <!-- 8. PITFALLS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"The steps prove it's correct."</b> No — a model can write confident, tidy reasoning that
+            still ends in a wrong answer.</li>
+        <li><b>"It shows how the AI really thinks."</b> No — the written steps are a helpful narrative, not
+            a literal readout of its internals.</li>
+        <li><b>"Use it for everything."</b> No — for simple tasks it just wastes tokens and slows things
+            down.</li>
+        <li><b>"CoT removes hallucination."</b> No — it reduces reasoning errors, but the model can still
+            invent facts along the way (Note 6).</li>
+        <li><b>"Longer reasoning is always better."</b> No — rambling can introduce new mistakes; clear and
+            correct beats long.</li>
+      </ul>
+    </div>
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>What is chain-of-thought prompting?</b><br/>Asking the model to reason step by step and show
+            its working before the final answer.</li>
+        <li><b>Why does it work?</b><br/>Each written step becomes context, giving the model working memory
+            and more compute to reach the answer.</li>
+        <li><b>What's the simplest way to trigger it?</b><br/>Add "Let's think step by step" (zero-shot
+            CoT).</li>
+        <li><b>What is self-consistency?</b><br/>Generating several reasoning paths and taking the
+            majority-vote answer.</li>
+        <li><b>When should you <i>not</i> use it?</b><br/>For simple lookups or lists — it just wastes
+            tokens.</li>
+        <li><b>Do the steps guarantee a correct answer?</b><br/>No — reasoning can look sound but still end
+            wrong; verify it.</li>
+      </ol>
+    </div>
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Chain-of-Thought (CoT)</b> — prompting the model to reason step by step.</li>
+        <li><b>Zero-shot CoT</b> — triggering reasoning with a phrase like "think step by step," no examples.</li>
+        <li><b>Few-shot CoT</b> — examples that include the reasoning, not just the answer.</li>
+        <li><b>Self-consistency</b> — majority vote across multiple reasoning paths.</li>
+        <li><b>Reasoning model</b> — a model built to do extended step-by-step thinking (a later note).</li>
+        <li><b>Intermediate steps</b> — the visible working the model produces before its final answer.</li>
+      </ul>
+    </div>
+    <!-- 11. RAPID REVISION FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>Asking the AI to reason step by step before answering.</td></tr>
+          <tr><td>The mental model</td><td>Splitting a dinner bill on a napkin — writing the steps catches the forgotten tip.</td></tr>
+          <tr><td>Why it works</td><td>Each written step becomes context — working memory plus more compute.</td></tr>
+          <tr><td>Magic phrase</td><td>"Let's think step by step" (zero-shot CoT).</td></tr>
+          <tr><td>Flavours</td><td>Zero-shot · Few-shot · Self-consistency · Least-to-most.</td></tr>
+          <tr><td>Best for</td><td>Maths, logic, multi-step decisions — not simple lookups.</td></tr>
+          <tr><td>Bonus win</td><td>Transparency — you can check the logic, not just the answer.</td></tr>
+          <tr><td>Watch out</td><td>Tidy reasoning can still be wrong — verify the steps.</td></tr>
+          <tr><td>Golden rule</td><td>Give the model room to work, and it works better.</td></tr>
+          <tr><td>Connects to</td><td>The seed behind today's reasoning models.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 9.</p>
+      <img class="cheat-img" src="../assets/day9.png" alt="Note 9 cheat sheet — Chain-of-Thought" />
+    </div>
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>If chain-of-thought teaches the model to <i>think</i> before it answers, the next question is: what
+         if it could <i>look things up</i> while it reasons? Note 10 begins the journey toward giving AI a
+         memory it can search — the foundation of everything in Chapter Two. 💕</p>
+      <div class="tags"><span>#ChainOfThought</span><span>#PromptEngineering</span><span>#Note9</span><span>#LearnInLove</span></div>
+    </div>
+    <div class="pager">
+      <a class="prev" href="day8.html"><small>Previous · Note 8</small>← Few-Shot Prompting</a>
+      <a class="next" href="day10.html"><small>Next · Note 10</small>Next concept →</a>
+    </div>
+  </main>
+  <footer><div class="wrap">Love Note 9 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
