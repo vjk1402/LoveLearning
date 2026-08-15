@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 11 · What are Embeddings? | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 11 — Embeddings: how AI turns words and meaning into numbers it can compare. The opening of Chapter Two." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+    .panel.connect { background:var(--card-tint); }
+    .panel.connect td:first-child { white-space:nowrap; }
+    code.vec { background:var(--card-tint); padding:2px 8px; border-radius:8px; font-size:14px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter Two · Embeddings &amp; Search / Note 11</div>
+      <span class="daytag">Love Note 11</span>
+      <h1>What are Embeddings?</h1>
+      <p class="lead">Chapter Two begins. If Chapter One was about how AI reads and writes, this is where it learns to <i>feel</i> meaning — by turning words into numbers it can measure.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>An <b>embedding</b> is a way of turning a piece of text — a word, a sentence, a whole document —
+         into a <b>list of numbers</b> called a <i>vector</i>. That list captures the text's <i>meaning</i>,
+         not its spelling. Words with similar meanings get similar numbers, so they land <b>close together</b>
+         in an imaginary "meaning-space."</p>
+      <p>Why should you care? Because this single idea is what lets AI <b>search by meaning</b>, recommend
+         related things, and — most importantly for us — <b>look things up</b> to fix the knowledge-cutoff
+         problem we ended Chapter One on. Embeddings are the foundation of everything in Chapter Two. 💕</p>
+    </div>
+
+    <!-- 2. ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: a map of meanings</h2>
+      <p>Imagine a giant map where every word is a <b>pin</b>. On this map, <i>king</i> and <i>queen</i> sit
+         right next to each other. <i>Happy</i> and <i>joyful</i> are neighbours. <i>Banana</i> is way over
+         in another corner near <i>apple</i> and <i>fruit</i> — and nowhere near <i>king</i>.</p>
+      <p>Nobody placed those pins by hand. The model <b>learned</b> the layout from how words are used
+         together in billions of sentences. An embedding is simply <b>the coordinates of a word's pin</b> on
+         that map. Closer pins = closer meanings. That's the whole magic. 🗺️💛</p>
+    </div>
+
+    <!-- 3. HOW IT WORKS -->
+    <div class="panel">
+      <h2><span class="ic">🔢</span> How it actually works</h2>
+      <table>
+        <thead><tr><th>Idea</th><th>What happens</th><th>Everyday example</th></tr></thead>
+        <tbody>
+          <tr><td>Meaning → numbers</td><td>Text is converted into a vector, e.g. <code class="vec">cat → [0.82, -0.13, 0.44, …]</code></td><td>"cat" becomes a row of numbers</td></tr>
+          <tr><td>Similar → close</td><td>Similar meanings get similar vectors, so they sit near each other</td><td>"happy" sits right beside "joyful"</td></tr>
+          <tr><td>Compare by distance</td><td>The model measures the gap between two vectors to judge relatedness</td><td>"dog" vs "puppy" = very close</td></tr>
+          <tr><td>Beyond exact words</td><td>Matches ideas, not spelling — so different words with the same meaning connect</td><td>"car" finds "automobile"</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;"><i>Note:</i> real embeddings have hundreds or thousands of numbers per vector, not three — but the intuition is identical: <b>meaning becomes a location.</b></p>
+    </div>
+
+    <!-- 4. CONNECT BACK -->
+    <div class="panel connect callout">
+      <h2><span class="ic">🧵</span> How this builds on our story</h2>
+      <table>
+        <thead><tr><th>Embeddings…</th><th>…connect to</th><th>The thread</th></tr></thead>
+        <tbody>
+          <tr><td>Start from words</td><td><b>Note 2 · Tokens</b></td><td>Tokens were the text pieces AI reads. Embeddings give each of those pieces a <i>meaning-coordinate</i>.</td></tr>
+          <tr><td>Solve the frozen memory</td><td><b>Note 10 · Knowledge Cutoff</b></td><td>The limitation we couldn't beat in Chapter One. Embeddings let AI search real documents instead of guessing from an old memory.</td></tr>
+          <tr><td>Power the next step</td><td><b>Note 12 · Semantic Search</b></td><td>Once meaning is a location, we can search by <i>meaning</i> — that's tomorrow's note. 💕</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why it matters</h2>
+      <ul>
+        <li><b>Search that understands you.</b> Find things by meaning, even if you use different words.</li>
+        <li><b>Recommendations.</b> "You liked this" works because similar items sit close in embedding space.</li>
+        <li><b>The heart of RAG.</b> Retrieval-Augmented Generation uses embeddings to fetch the right facts before the AI answers.</li>
+        <li><b>Deduplication &amp; clustering.</b> Group similar tickets, docs, or questions automatically.</li>
+      </ul>
+    </div>
+
+    <!-- 6. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: the support inbox</h2>
+      <p>A customer writes <i>"I can't log in."</i> Another writes <i>"sign-in isn't working."</i> Keyword
+         matching sees two different sentences. <b>Embeddings see the same meaning</b> — both vectors land in
+         the same neighbourhood — so the system instantly links them to the same known fix. Different words,
+         one meaning, one answer. That's embeddings quietly doing the work. 🎯</p>
+    </div>
+
+    <!-- 7. MISCONCEPTIONS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"Embeddings store the actual words."</b> No — they store <i>meaning</i> as numbers, not the text itself.</li>
+        <li><b>"Same spelling = same embedding."</b> Not always — "bank" (river) and "bank" (money) can differ by context in modern models.</li>
+        <li><b>"More numbers = always better."</b> No — bigger vectors cost more; the right size depends on the task.</li>
+        <li><b>"Embeddings understand like humans."</b> No — they capture statistical meaning from data, not lived understanding.</li>
+      </ul>
+    </div>
+
+    <!-- 8. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test</h2>
+      <ol>
+        <li><b>What is an embedding?</b><br/>A vector (list of numbers) that represents the meaning of text.</li>
+        <li><b>Why do similar words end up close?</b><br/>Because the model learned similar usage patterns, giving them similar vectors.</li>
+        <li><b>How does a machine judge similarity?</b><br/>By measuring the distance between two vectors.</li>
+        <li><b>How do embeddings help with the knowledge cutoff?</b><br/>They let AI retrieve real, current documents by meaning instead of relying on old memory.</li>
+      </ol>
+    </div>
+
+    <!-- 9. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms</h2>
+      <ul>
+        <li><b>Embedding</b> — a numeric vector representing meaning.</li>
+        <li><b>Vector</b> — an ordered list of numbers.</li>
+        <li><b>Meaning-space</b> — the imaginary map where similar meanings sit close together.</li>
+        <li><b>Distance / similarity</b> — how related two vectors (meanings) are.</li>
+        <li><b>Embedding model</b> — the model that converts text into vectors.</li>
+      </ul>
+    </div>
+
+    <!-- 10. FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>Turning meaning into numbers AI can compare.</td></tr>
+          <tr><td>The mental model</td><td>A map where every word is a pin; close pins = close meaning.</td></tr>
+          <tr><td>The magic move</td><td>"car" can find "automobile" because meaning, not spelling, decides closeness.</td></tr>
+          <tr><td>Builds on</td><td>Note 2 Tokens.</td></tr>
+          <tr><td>Solves</td><td>Note 10 Knowledge Cutoff (by enabling retrieval).</td></tr>
+          <tr><td>Leads to</td><td>Note 12 Semantic Search.</td></tr>
+          <tr><td>Interview line</td><td>"Embeddings map text to vectors so meaning becomes measurable distance."</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <img class="cheat-img" src="../assets/day11.png" alt="Note 11 cheat sheet — What are Embeddings" />
+    </div>
+
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>Now that meaning has a location, we can do something powerful: search by <i>what you mean</i> instead
+         of the exact words you type. Ask for "how to fix a flat tyre" and get back "repairing a punctured
+         wheel." That's <b>Note 12 · Semantic Search</b>. 💕</p>
+      <div class="tags"><span>#Embeddings</span><span>#AIforEveryone</span><span>#Note11</span><span>#LearnInLove</span></div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="day10.html"><small>Previous · Note 10</small>← LLM Limitations</a>
+      <a class="next" href="day12.html"><small>Next · Note 12</small>Semantic Search →</a>
+    </div>
+
+  </main>
+
+  <footer><div class="wrap">Love Note 11 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>

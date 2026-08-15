@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 12 · Semantic Search | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 12 — Semantic Search: finding meaning, not just matching exact words, powered by embeddings." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+    .panel.connect { background:var(--card-tint); }
+    .panel.connect td:first-child { white-space:nowrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter Two · Embeddings &amp; Search / Note 12</div>
+      <span class="daytag">Love Note 12</span>
+      <h1>Semantic Search</h1>
+      <p class="lead">Yesterday meaning became a location. Today we use that to find things by <i>what you mean</i> — not just the exact words you typed.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p><b>Semantic search</b> finds results based on <i>meaning</i> instead of exact keyword matches.
+         It turns your query into an embedding (Note 11!), then looks for the documents whose embeddings
+         sit <b>closest in meaning-space</b>. So a search for <i>"how to fix a flat tyre"</i> can return an
+         article titled <i>"repairing a punctured wheel"</i> — zero shared keywords, same intent.</p>
+      <p>Old keyword search asked <i>"do the words match?"</i> Semantic search asks the better question:
+         <b>"do the meanings match?"</b> That shift is what makes modern AI search feel like it actually
+         understands you. 💕</p>
+    </div>
+
+    <!-- 2. ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: the helpful librarian</h2>
+      <p>Picture two librarians. The first is <b>literal</b>: you ask for a book about "feeling low" and she
+         only checks for books with the exact words "feeling low" on the cover — and finds nothing. 📚</p>
+      <p>The second librarian <b>understands what you mean</b>. She hears "feeling low" and immediately brings
+         you books on sadness, mood, and mental health — even though none use your exact words. The second
+         librarian is <b>semantic search</b>. She matches your <i>intent</i>, not your spelling. 💛</p>
+    </div>
+
+    <!-- 3. KEYWORD vs SEMANTIC -->
+    <div class="panel">
+      <h2><span class="ic">🔍</span> Keyword vs semantic search</h2>
+      <table>
+        <thead><tr><th></th><th>Keyword search (old way)</th><th>Semantic search (new way)</th></tr></thead>
+        <tbody>
+          <tr><td>Matches on</td><td>Exact words</td><td>Meaning (via embeddings)</td></tr>
+          <tr><td>"doctor" finds…</td><td>only "doctor"</td><td>"physician", "GP", "medic" too</td></tr>
+          <tr><td>Different wording</td><td>often misses it</td><td>still finds it</td></tr>
+          <tr><td>Typos / synonyms</td><td>struggles</td><td>handles gracefully</td></tr>
+          <tr><td>Feels like</td><td>Ctrl+F</td><td>a friend who gets you</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. HOW IT WORKS -->
+    <div class="panel callout">
+      <h2><span class="ic">⚙️</span> How it works, step by step</h2>
+      <ol>
+        <li><b>Embed everything.</b> Every document is turned into a vector ahead of time and stored.</li>
+        <li><b>Embed the query.</b> When you search, your question becomes a vector too.</li>
+        <li><b>Find nearest neighbours.</b> The system finds the document vectors <i>closest</i> to your query vector.</li>
+        <li><b>Return by meaning.</b> The closest meanings come back first — even with totally different words.</li>
+      </ol>
+    </div>
+
+    <!-- 5. CONNECT BACK -->
+    <div class="panel connect callout">
+      <h2><span class="ic">🧵</span> How this builds on our story</h2>
+      <table>
+        <thead><tr><th>Semantic search…</th><th>…connects to</th><th>The thread</th></tr></thead>
+        <tbody>
+          <tr><td>Runs on embeddings</td><td><b>Note 11 · Embeddings</b></td><td>It's literally yesterday's meaning-map, put to work. No embeddings, no semantic search.</td></tr>
+          <tr><td>Fixes an old limit</td><td><b>Note 10 · Knowledge Cutoff</b></td><td>By retrieving real documents, it lets AI answer from current facts instead of frozen memory.</td></tr>
+          <tr><td>Leads to the comparison</td><td><b>Note 13 · Keyword vs Vector Search</b></td><td>Tomorrow we go deeper on <i>when</i> to use each — and why the best systems blend them. 💕</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Why it matters</h2>
+      <ul>
+        <li><b>Better help &amp; support.</b> Users get the right answer even when they phrase things "wrong."</li>
+        <li><b>Smarter internal search.</b> Find that one runbook or doc by describing it, not guessing keywords.</li>
+        <li><b>The retrieval in RAG.</b> Semantic search is how a RAG system picks the right context to feed the model.</li>
+        <li><b>Multilingual reach.</b> Meaning-based matching can even connect ideas across languages.</li>
+      </ul>
+    </div>
+
+    <!-- 7. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: the runbook rescue</h2>
+      <p>It's 2 a.m., an alert fires, and you search your internal docs for <i>"payments service timing
+         out."</i> Keyword search finds nothing — because the actual runbook is titled <i>"handling latency
+         spikes on the billing API."</i> Different words, same problem. <b>Semantic search understands the
+         meaning</b>, surfaces the right runbook instantly, and you're fixing the incident instead of hunting
+         for the doc. That's the difference between matching words and matching intent. 🎯</p>
+    </div>
+
+    <!-- 8. MISCONCEPTIONS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"Semantic search replaces keyword search."</b> Not quite — the best systems <i>combine</i> both (that's hybrid search, Note 19).</li>
+        <li><b>"It always understands perfectly."</b> No — it's only as good as the embedding model and the data.</li>
+        <li><b>"It's just fuzzy keyword matching."</b> No — it matches meaning, not misspellings of the same word.</li>
+        <li><b>"It needs no setup."</b> No — documents must be embedded and stored (often in a vector database, Note 15).</li>
+      </ul>
+    </div>
+
+    <!-- 9. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test</h2>
+      <ol>
+        <li><b>What does semantic search match on?</b><br/>Meaning, using embeddings — not exact keywords.</li>
+        <li><b>What are the core steps?</b><br/>Embed documents, embed the query, find nearest neighbours, return by meaning.</li>
+        <li><b>Why can it beat keyword search?</b><br/>It finds results with different wording but the same intent.</li>
+        <li><b>How does it link to RAG?</b><br/>It's the retrieval step that picks the right context to feed the model.</li>
+      </ol>
+    </div>
+
+    <!-- 10. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms</h2>
+      <ul>
+        <li><b>Semantic search</b> — finding results by meaning rather than exact words.</li>
+        <li><b>Query vector</b> — the embedding of your search question.</li>
+        <li><b>Nearest neighbours</b> — the closest vectors in meaning-space to your query.</li>
+        <li><b>Intent</b> — what you actually mean, beyond the literal words.</li>
+        <li><b>Keyword search</b> — traditional exact-word matching.</li>
+      </ul>
+    </div>
+
+    <!-- 11. FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>Searching by meaning, not exact words.</td></tr>
+          <tr><td>The mental model</td><td>The librarian who understands what you mean, not just what you said.</td></tr>
+          <tr><td>The magic move</td><td>"flat tyre" finds "punctured wheel."</td></tr>
+          <tr><td>Runs on</td><td>Note 11 Embeddings.</td></tr>
+          <tr><td>Fixes</td><td>Keyword search missing different wording.</td></tr>
+          <tr><td>Leads to</td><td>Note 13 Keyword vs Vector Search.</td></tr>
+          <tr><td>Interview line</td><td>"Semantic search embeds the query and finds nearest-neighbour documents by meaning."</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <img class="cheat-img" src="../assets/day12.png" alt="Note 12 cheat sheet — Semantic Search" />
+    </div>
+
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>We've praised semantic search — but keyword search isn't dead. Sometimes the <i>exact</i> word really
+         matters (think product codes or names). Tomorrow we put them head to head and see why the smartest
+         systems use <b>both</b>. That's <b>Note 13 · Keyword vs Vector Search</b>. 💕</p>
+      <div class="tags"><span>#SemanticSearch</span><span>#AIforEveryone</span><span>#Note12</span><span>#LearnInLove</span></div>
+    </div>
+
+    <div class="pager">
+      <a class="prev" href="day11.html"><small>Previous · Note 11</small>← Embeddings</a>
+      <a class="next" href="day13.html"><small>Next · Note 13</small>Keyword vs Vector →</a>
+    </div>
+
+  </main>
+
+  <footer><div class="wrap">Love Note 12 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
