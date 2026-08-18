@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 13 · Keyword Search vs Vector Search | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 13 — Keyword Search vs Vector Search: finding words versus finding meaning, and why the difference changes everything." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+    /* additive-only: highlights the "connect back" panel without touching your base styles */
+    .panel.connect { background:var(--card-tint); }
+    .panel.connect td:first-child { white-space:nowrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter Two · Embeddings &amp; Search / Note 13</div>
+      <span class="daytag">Love Note 13</span>
+      <h1>Keyword Search vs Vector Search</h1>
+      <p class="lead">The chapter in our love story where two searches sit side by side — one hunting for the exact <i>words</i> you typed, the other reaching for the <i>meaning</i> you actually had in your heart. 💗</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>Both searches help us find information — but they work in <b>very different ways</b>.
+         <b>Keyword search</b> (lexical search) looks for the <b>exact words</b> you typed and their close
+         variations. <b>Vector search</b> (semantic search) looks for the <b>meaning</b> behind your words,
+         using embeddings.</p>
+      <p>Type <i>"apple benefits"</i>. Keyword search returns only pages that literally contain those words.
+         Vector search <i>also</i> finds <i>"why fruits are good for your health"</i> — because it understands
+         the idea, even when the words don't match. That single difference is why modern AI apps feel so much
+         smarter than old search boxes. 💕</p>
+    </div>
+    <!-- 2. A FRESH ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: two librarians</h2>
+      <p>The <b>first librarian</b> only understands exact titles. Ask for "a book about a boy wizard" and, if
+         the word "wizard" isn't printed on the cover, she shrugs. That's <b>keyword search</b> — precise, fast,
+         but literal.</p>
+      <p>The <b>second librarian</b> has read everything and remembers where each <i>idea</i> lives on the
+         shelves. Ask her the same thing and she walks straight to the magic and adventure section and hands you
+         exactly what you meant — no exact title needed. That's <b>vector search</b>: she navigates by
+         <i>nearness of meaning</i>, not matching letters. 📚</p>
+    </div>
+    <!-- 3. SIDE-BY-SIDE -->
+    <div class="panel">
+      <h2><span class="ic">🔍</span> Side by side: same query, different outcomes</h2>
+      <table>
+        <thead><tr><th></th><th>🔤 Keyword Search (Lexical)</th><th>🧭 Vector Search (Semantic)</th></tr></thead>
+        <tbody>
+          <tr><td>What it looks for</td><td>Exact words and close variations.</td><td>Meaning, not just exact words.</td></tr>
+          <tr><td>How it works</td><td>Matches the exact words in the document.</td><td>Understands meaning using embeddings; finds related concepts.</td></tr>
+          <tr><td>Query: "apple benefits"</td><td>✅ "Apple benefits for good health"<br/>❌ "Why fruits are good for your health"</td><td>✅ "Why fruits are good for your health"<br/>✅ "Fruits that boost your immunity"</td></tr>
+          <tr><td>Great for</td><td>Exact matches, product codes, IDs, technical terms.</td><td>Relevant information, RAG, AI apps, knowledge search.</td></tr>
+          <tr><td>The feeling</td><td>😕 Limited results — misses matches when words differ.</td><td>😊 More relevant results — understands what you meant.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 4. THE MAGIC BEHIND VECTOR SEARCH -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> The magic behind vector search</h2>
+      <p>Embeddings convert text into <b>vectors (numbers)</b> and place similar meanings <b>closer together</b>
+         in space. So these three all cluster near each other:</p>
+      <ul>
+        <li><b>"apple benefits"</b></li>
+        <li><b>"apples are healthy"</b></li>
+        <li><b>"fruits are good for you"</b></li>
+      </ul>
+      <p><b>Closer points mean similar meaning.</b> That's the whole trick — vector search doesn't read words,
+         it measures how near two ideas sit in this "meaning space."</p>
+    </div>
+    <!-- 5. THE INTERCONNECTION -->
+    <div class="panel connect callout">
+      <h2><span class="ic">🧵</span> Where this fits among its look-alikes</h2>
+      <p>Keyword search, vector search, embeddings, cosine similarity, vector databases — they blur together
+         until each gets a clear job. Same city story: <i>you move to a huge new city and want to find people who
+         think like you.</i></p>
+      <table>
+        <thead><tr><th>Concept</th><th>Its role in the story</th><th>In one line</th></tr></thead>
+        <tbody>
+          <tr><td>🔤 Keyword Search</td><td>Finding people by their exact name on a list — miss the spelling, miss the person.</td><td>Match the <b>words</b>.</td></tr>
+          <tr><td>🧭 Embeddings <small>(Note 11)</small></td><td>Every person gets a "home address" based on how they think.</td><td>Turn <b>meaning into location</b>.</td></tr>
+          <tr><td>🔍 Semantic / Vector Search <small>(Note 13 · today)</small></td><td>Walking the city to reach the nearest like-minded people, by meaning.</td><td>Find by <b>meaning</b>.</td></tr>
+          <tr><td>📐 Cosine Similarity <small>(Note 14)</small></td><td>The ruler that decides who counts as "near" — by direction of thinking.</td><td>The <b>measure</b> of nearness.</td></tr>
+          <tr><td>🗄️ Vector Database <small>(Note 15)</small></td><td>The city directory storing every address for instant lookup.</td><td>The <b>home</b> for the vectors.</td></tr>
+        </tbody>
+      </table>
+      <p><b>The through-line:</b> Keyword search matches the <i>words</i>; embeddings build the <i>map</i> of
+         meaning; vector search is the <i>act</i> of finding by meaning; cosine similarity is the <i>ruler</i> it
+         uses; the vector database is the <i>home</i>. Today is the moment we choose meaning over spelling. 💗</p>
+    </div>
+    <!-- 6. WHY IT MATTERS -->
+    <div class="panel callout">
+      <h2><span class="ic">💡</span> Real-world use cases</h2>
+      <ul>
+        <li><b>AI chatbots &amp; assistants.</b> Understand messy questions and reply with the right meaning.</li>
+        <li><b>Enterprise search.</b> Employees find the right doc even when they don't know the exact title.</li>
+        <li><b>E-learning platforms.</b> Surface related lessons by concept, not just keyword.</li>
+        <li><b>E-commerce recommendations.</b> "More like this" by meaning of the product, not its name.</li>
+        <li><b>Knowledge bases &amp; RAG.</b> Retrieve the most relevant passages to feed an LLM.</li>
+      </ul>
+    </div>
+    <!-- 7. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🏭</span> Real-world example: the support bot that found the right runbook</h2>
+      <p>An engineer types <i>"pipeline stuck, load didn't finish overnight."</i> No runbook is titled exactly
+         that. <b>Keyword search</b> returns junk because the words don't line up.</p>
+      <p><b>Vector search</b> embeds that sentence and finds the <b>nearest</b> runbook vectors — pulling up
+         <i>"DAG hung in running state"</i> and <i>"Snowflake load delay recovery"</i> even though the wording is
+         different. It matched the <b>problem</b>, not the phrasing. That's the backbone of a RAG assistant that
+         drafts an RCA from your own runbooks. 🔧</p>
+    </div>
+    <!-- 8. WHEN TO USE WHICH -->
+    <div class="panel callout">
+      <h2><span class="ic">🛡️</span> When to use which (they're friends, not rivals)</h2>
+      <ul>
+        <li><b>Use keyword search</b> for exact matches — product codes, IDs, error codes, legal/technical terms.</li>
+        <li><b>Use vector search</b> for intent — natural-language questions, "find something like this," RAG.</li>
+        <li><b>Best of both: hybrid search.</b> Combine keyword + vector to catch exact terms <i>and</i> meaning.</li>
+        <li><b>Same embedding model</b> both sides, or the geometry breaks.</li>
+        <li><b>Tune top-K</b> for vector results — around 3–5 for RAG keeps it focused.</li>
+      </ul>
+    </div>
+    <!-- 9. MISCONCEPTIONS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"Vector search always beats keyword search."</b> No — for exact IDs and codes, keyword search is better and faster.</li>
+        <li><b>"Keyword search is obsolete."</b> No — it's still the right tool for precise, literal lookups, and hybrid search uses both.</li>
+        <li><b>"Vector search reads words."</b> No — it measures nearness between <i>embeddings</i>, not text.</li>
+        <li><b>"They're the same thing with different names."</b> No — one matches words, the other matches meaning.</li>
+        <li><b>"More results = better."</b> No — a bloated result set feeds noise into RAG and hurts answers.</li>
+      </ul>
+    </div>
+    <!-- 10. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>What does keyword search match?</b><br/>The exact words you typed (and close variations).</li>
+        <li><b>What does vector search match?</b><br/>The meaning behind your words, using embeddings.</li>
+        <li><b>Why can vector search find results with no matching words?</b><br/>Because similar meanings sit closer together in vector space.</li>
+        <li><b>When is keyword search the better choice?</b><br/>For exact matches — product codes, IDs, technical terms.</li>
+        <li><b>What's hybrid search?</b><br/>Combining keyword + vector search to get both exactness and meaning.</li>
+      </ol>
+    </div>
+    <!-- 11. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Keyword / lexical search</b> — matching the exact words in a document.</li>
+        <li><b>Vector / semantic search</b> — matching meaning via embeddings.</li>
+        <li><b>Meaning space</b> — the space where similar ideas sit closer together.</li>
+        <li><b>Hybrid search</b> — combining keyword and vector search.</li>
+        <li><b>Embeddings</b> — the numbers that turn meaning into vectors (Note 11).</li>
+      </ul>
+    </div>
+    <!-- 12. FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>The one-line takeaway</td><td>Keyword search finds what you <b>type</b>; vector search finds what you <b>mean</b>.</td></tr>
+          <tr><td>The mental model</td><td>Two librarians — one literal, one who knows what you meant.</td></tr>
+          <tr><td>Keyword search is great for</td><td>Exact matches, product codes, IDs, technical terms.</td></tr>
+          <tr><td>Vector search is great for</td><td>RAG, AI apps, knowledge search, natural questions.</td></tr>
+          <tr><td>The magic behind it</td><td>Embeddings place similar meanings closer in space.</td></tr>
+          <tr><td>Best of both</td><td>Hybrid search.</td></tr>
+          <tr><td>Nearness measured by</td><td>Note 14 · Cosine Similarity.</td></tr>
+          <tr><td>Vectors come from</td><td>Note 11 · Embeddings.</td></tr>
+          <tr><td>Stored in</td><td>Note 15 · Vector Databases.</td></tr>
+          <tr><td>Interview line</td><td>"Keyword search matches words; vector search matches meaning via embeddings."</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 13.</p>
+      <img class="cheat-img" src="../assets/day13.png" alt="Note 13 cheat sheet — Keyword Search vs Vector Search" />
+    </div>
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>Vector search finds the nearest ideas — but <b>how does AI actually measure</b> similarity between two
+         embeddings? What's the ruler behind every match? That's where <b>Note 14 · Cosine Similarity</b> takes
+         us — the quiet tool that measures the angle of meaning between two vectors. 💕</p>
+      <div class="tags"><span>#KeywordSearch</span><span>#VectorSearch</span><span>#Note13</span><span>#LearnInLove</span></div>
+    </div>
+    <div class="pager">
+      <a class="prev" href="day12.html"><small>Previous · Note 12</small>← Semantic Search</a>
+      <a class="next" href="day14.html"><small>Next · Note 14</small>Cosine Similarity →</a>
+    </div>
+  </main>
+  <footer><div class="wrap">Love Note 13 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
