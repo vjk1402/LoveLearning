@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note 16 · Chunking | A Love Story of Learning</title>
+  <meta name="description" content="Love Note 16 — Chunking, the art of breaking big knowledge into small, meaningful pieces so AI can retrieve exactly what it needs." />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <!-- additive-only: your style.css has no table rules, so this styles tables to match the theme without restyling anything you built -->
+  <style>
+    .panel table { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+    .panel th, .panel td { text-align:left; padding:10px 13px; border:1px solid var(--line); vertical-align:top; }
+    .panel thead th { background:var(--card-tint); color:var(--rose-deep); font-weight:800; }
+    .panel tbody td:first-child { font-weight:700; color:var(--text); }
+    /* additive-only: highlights the "connect back" panel without touching your base styles */
+    .panel.connect { background:var(--card-tint); }
+    .panel.connect td:first-child { white-space:nowrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand"><div class="logo">💗</div><span class="full">A Love Story of Learning</span></div>
+      <a class="btn" href="../index.html">← Our story</a>
+    </div>
+  </nav>
+  <header class="topic-hero">
+    <div class="wrap">
+      <div class="crumb"><a href="../index.html">Our story</a> / Chapter Two · Embeddings &amp; Search / Note 16</div>
+      <span class="daytag">Love Note 16</span>
+      <h1>Chunking</h1>
+      <p class="lead">The chapter in our love story where we learn that AI can't swallow a whole book at once — so we gently break big knowledge into small, meaningful pieces it can actually hold. ✂️💗</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <!-- 1. THE 30-SECOND BRIEF -->
+    <div class="panel">
+      <h2><span class="ic">📜</span> The 30-second brief</h2>
+      <p>In Note 15 we gave our embeddings a home — the <b>vector database</b>. But before a big document can move
+         in, it has to be cut into the right size pieces first. That cutting is <b>Chunking</b>: splitting a large
+         document into smaller, meaningful pieces before you embed them.</p>
+      <p>Why bother? Because AI models can't read an entire book in one go, and searching one giant blob returns
+         messy, unfocused answers. <b>Small, well-formed pieces = more precise retrieval</b> and less noise fed to
+         the model. Get chunking right and everything downstream — search, RAG, answers — gets sharper. 💕</p>
+    </div>
+    <!-- 2. A FRESH ANALOGY -->
+    <div class="panel analogy">
+      <h2><span class="ic">💌</span> A fresh analogy: chocolate you can actually share</h2>
+      <p>A giant chocolate bar is wonderful — but you can't hand the <i>whole thing</i> to someone who just wants
+         one bite. So you snap it along the grooves into neat squares. Each square is complete, satisfying, and
+         easy to pass around.</p>
+      <p>That's chunking. The document is the whole bar; the chunks are the squares. Snap it at the <b>natural
+         grooves</b> (paragraphs, sentences, ideas) and every piece makes sense on its own. Snap it carelessly and
+         you get a broken half-square that means nothing. 🍫</p>
+    </div>
+    <!-- 3. WHY CHUNK -->
+    <div class="panel">
+      <h2><span class="ic">🔍</span> Why chunk at all?</h2>
+      <table>
+        <thead><tr><th>Reason</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>⏳ Limited context window</td><td>Models can only read so much text at once — a whole book won't fit.</td></tr>
+          <tr><td>🎯 More precise retrieval</td><td>Smaller pieces let search return the exact relevant part, not a whole chapter.</td></tr>
+          <tr><td>🔇 Less noise</td><td>The AI reads only what matters, so answers are cleaner and more accurate.</td></tr>
+          <tr><td>⚡ Faster &amp; cheaper</td><td>Smaller embeddings are quicker to compute and cheaper to store and search.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 4. HOW IT WORKS -->
+    <div class="panel callout">
+      <h2><span class="ic">⚙️</span> How it works (4 steps)</h2>
+      <ul>
+        <li><b>1 · Take a big document</b> — a PDF, a runbook, a wiki page, a book.</li>
+        <li><b>2 · Split into chunks</b> — by paragraph, sentence, fixed size, or meaning.</li>
+        <li><b>3 · Embed each chunk</b> — turn every piece into its own vector.</li>
+        <li><b>4 · Store in a vector database</b> — each chunk saved with its metadata, ready to retrieve.</li>
+      </ul>
+      <p>When a question comes in, the system retrieves only the <b>chunks that matter</b> — not the entire
+         document.</p>
+    </div>
+    <!-- 5. TYPES OF CHUNKING -->
+    <div class="panel">
+      <h2><span class="ic">🧩</span> Types of chunking</h2>
+      <table>
+        <thead><tr><th>Type</th><th>How it splits</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td>📏 Fixed-size</td><td>Every N words/tokens.</td><td>Simple, uniform data; quick to set up.</td></tr>
+          <tr><td>💬 Sentence-based</td><td>Splits by sentences.</td><td>Q&amp;A, short factual content.</td></tr>
+          <tr><td>¶ Paragraph-based</td><td>Splits by paragraphs.</td><td>Articles, docs with clear structure.</td></tr>
+          <tr><td>🧠 Semantic</td><td>Groups by meaning, not length.</td><td>Best quality — keeps related ideas together.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 6. GOOD vs BAD CHUNK -->
+    <div class="panel callout">
+      <h2><span class="ic">⚖️</span> Good chunk vs bad chunk</h2>
+      <table>
+        <thead><tr><th></th><th>✅ Good chunk</th><th>❌ Bad chunk</th></tr></thead>
+        <tbody>
+          <tr><td>The idea</td><td>Holds one complete idea.</td><td>Cuts an idea in half.</td></tr>
+          <tr><td>The size</td><td>Right size — not too big, not too small.</td><td>Too big (blurry) or too small (no context).</td></tr>
+          <tr><td>The context</td><td>Keeps context before and after.</td><td>Loses meaning at the edges.</td></tr>
+          <tr><td>The result</td><td>Clean, accurate retrieval.</td><td>Noisy, confusing answers.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 7. THE INTERCONNECTION -->
+    <div class="panel connect callout">
+      <h2><span class="ic">🧵</span> Where chunking sits in the chapter</h2>
+      <p>Chunking, embeddings, vector search, cosine similarity, vector databases — they all work as a team. Same
+         city story: <i>you move to a huge new city and want to find people who think like you.</i></p>
+      <table>
+        <thead><tr><th>Concept</th><th>Its role in the story</th><th>In one line</th></tr></thead>
+        <tbody>
+          <tr><td>✂️ Chunking <small>(Note 16 · today)</small></td><td>Introducing yourself one clear thought at a time, not your whole life story at once.</td><td>Break knowledge into <b>pieces</b>.</td></tr>
+          <tr><td>🧭 Embeddings <small>(Note 11)</small></td><td>Each thought gets a "home address" based on its meaning.</td><td>Turn <b>meaning into location</b>.</td></tr>
+          <tr><td>🔍 Vector Search <small>(Note 13)</small></td><td>Walking the city to reach the nearest matching thought.</td><td>Find by <b>meaning</b>.</td></tr>
+          <tr><td>📐 Cosine Similarity <small>(Note 14)</small></td><td>The ruler that decides which thoughts are "near."</td><td>The <b>measure</b> of nearness.</td></tr>
+          <tr><td>🗄️ Vector Database <small>(Note 15)</small></td><td>The directory storing every thought for instant lookup.</td><td>The <b>home</b> for the vectors.</td></tr>
+        </tbody>
+      </table>
+      <p><b>The through-line:</b> Chunking is the <i>very first step</i> — it prepares raw knowledge so embeddings
+         can capture it, the database can store it, and search can find it. Get the pieces right and the whole
+         chapter sings. 💗</p>
+    </div>
+    <!-- 8. REAL-WORLD EXAMPLE -->
+    <div class="panel">
+      <h2><span class="ic">🍲</span> Real-world example: the recipe-book chatbot</h2>
+      <p>Imagine a chatbot built on <i>"Grandma's Recipe Book — 500+ pages."</i> You ask a simple question:
+         <i>"How much sugar for the cake?"</i></p>
+      <p>Without chunking, the AI would have to wrestle with the entire book. With chunking, the book was already
+         split into small pieces — <b>Ingredients, Steps, Tips</b> — each embedded and stored. So the bot retrieves
+         only the <b>one tiny chunk</b> that answers you: <i>"Sugar: 1 cup."</i> It never reads the whole book — it
+         grabs the exact piece it needs. That's the backbone of every RAG assistant, including one that answers
+         questions from your own runbooks. 🔧</p>
+    </div>
+    <!-- 9. PRACTICAL TIPS -->
+    <div class="panel callout">
+      <h2><span class="ic">🛡️</span> Practical tips (so it behaves)</h2>
+      <ul>
+        <li><b>Chunk at natural boundaries.</b> Prefer paragraphs/sentences over cutting mid-idea.</li>
+        <li><b>Right-size it.</b> Too big blurs meaning; too small loses context. (Day 17 dives into this.)</li>
+        <li><b>Add a little overlap.</b> A small overlap keeps context flowing across chunk edges.</li>
+        <li><b>Keep metadata.</b> Store the source, page and section with each chunk for filtering and citations.</li>
+        <li><b>Match chunks to your content.</b> Structured docs love paragraph splits; dense knowledge loves semantic chunking.</li>
+      </ul>
+    </div>
+    <!-- 10. MISCONCEPTIONS -->
+    <div class="panel">
+      <h2><span class="ic">⚠️</span> Common misconceptions</h2>
+      <ul>
+        <li><b>"Smaller chunks are always better."</b> No — too small and you strip away the context needed to answer.</li>
+        <li><b>"Chunking is just cutting by character count."</b> No — the best chunking respects meaning and structure.</li>
+        <li><b>"Chunking is optional for RAG."</b> No — it's the foundation; bad chunks = bad answers.</li>
+        <li><b>"One chunking style fits everything."</b> No — the right method depends on your content type.</li>
+        <li><b>"Chunking changes the meaning."</b> No — done well, it preserves meaning while making it searchable.</li>
+      </ul>
+    </div>
+    <!-- 11. SELF TEST -->
+    <div class="panel callout">
+      <h2><span class="ic">🎓</span> Quick self-test (exam-style)</h2>
+      <ol>
+        <li><b>What is chunking?</b><br/>Splitting a large document into smaller, meaningful pieces before embedding.</li>
+        <li><b>Why do we chunk?</b><br/>Limited context windows, more precise retrieval, less noise, cheaper embeddings.</li>
+        <li><b>Name two chunking types.</b><br/>Fixed-size, sentence-based, paragraph-based, or semantic.</li>
+        <li><b>What makes a good chunk?</b><br/>One complete idea, right size, keeps context.</li>
+        <li><b>Where do chunks go after embedding?</b><br/>Into a vector database (Note 15).</li>
+      </ol>
+    </div>
+    <!-- 12. GLOSSARY -->
+    <div class="panel">
+      <h2><span class="ic">📚</span> Key terms to carry forward</h2>
+      <ul>
+        <li><b>Chunking</b> — splitting a document into smaller pieces before embedding.</li>
+        <li><b>Chunk</b> — one small, meaningful piece of the original text.</li>
+        <li><b>Context window</b> — the max amount of text a model can read at once.</li>
+        <li><b>Semantic chunking</b> — splitting by meaning rather than fixed length.</li>
+        <li><b>Overlap</b> — a small shared region between chunks that preserves context (Note 17).</li>
+      </ul>
+    </div>
+    <!-- 13. FLASHCARD -->
+    <div class="panel callout">
+      <h2><span class="ic">⚡</span> 60-second flashcard (last look before the exam)</h2>
+      <table>
+        <tbody>
+          <tr><td>Define it in one breath</td><td>Breaking big knowledge into small, meaningful searchable pieces.</td></tr>
+          <tr><td>The mental model</td><td>Snapping a chocolate bar into neat squares.</td></tr>
+          <tr><td>Why do it</td><td>Context limits · precise retrieval · less noise · cheaper.</td></tr>
+          <tr><td>Types</td><td>Fixed-size · sentence · paragraph · semantic.</td></tr>
+          <tr><td>Good chunk</td><td>One idea, right size, keeps context.</td></tr>
+          <tr><td>Then embedded by</td><td>Note 11 · Embeddings.</td></tr>
+          <tr><td>Stored in</td><td>Note 15 · Vector Databases.</td></tr>
+          <tr><td>Next refinement</td><td>Note 17 · Chunk Size &amp; Overlap.</td></tr>
+          <tr><td>Everyday use</td><td>RAG chatbots · doc Q&amp;A · knowledge search.</td></tr>
+          <tr><td>Interview line</td><td>"Chunking splits documents into meaningful pieces so retrieval stays precise."</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- CHEAT SHEET IMAGE -->
+    <div class="panel">
+      <h2><span class="ic">🖼️</span> Today's cheat sheet</h2>
+      <p>The same image shared on the LinkedIn post for Note 16.</p>
+      <img class="cheat-img" src="../assets/day16.png" alt="Note 16 cheat sheet — Chunking" />
+    </div>
+    <!-- TEASER -->
+    <div class="panel callout">
+      <h2><span class="ic">✨</span> Next spark</h2>
+      <p>We know <i>why</i> we chunk — but how big should each piece be, and should they overlap? Too big and the
+         meaning blurs; too small and the context is lost. That's where <b>Note 17 · Chunk Size &amp; Overlap</b>
+         takes us — balancing context, precision and retrieval quality. 💕</p>
+      <div class="tags"><span>#Chunking</span><span>#RAG</span><span>#Note16</span><span>#LearnInLove</span></div>
+    </div>
+    <div class="pager">
+      <a class="prev" href="day15.html"><small>Previous · Note 15</small>← Vector Databases</a>
+      <a class="next" href="day17.html"><small>Next · Note 17</small>Chunk Size &amp; Overlap →</a>
+    </div>
+  </main>
+  <footer><div class="wrap">Love Note 16 · written with a full heart by <span class="sig">Vishal Jayakumar</span></div></footer>
+</body>
+</html>
